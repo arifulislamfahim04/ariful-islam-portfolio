@@ -1,0 +1,60 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function google() { return request.auth != null && request.auth.token.firebase.sign_in_provider == 'google.com' && request.auth.token.email_verified == true; }
+  function admin() { return google() && request.auth.token.email == 'arifulislamfahim04@gmail.com'; }
+  function publicComment() { return resource.data.status in ['approved', 'deleted']; }
+  function openArticle(id) { return !exists(/databases/$(database)/documents/commentSettings/$(id)) || get(/databases/$(database)/documents/commentSettings/$(id)).data.enabled == true; }
+  function parentValid(d) { return d.parentId == '' || (get(/databases/$(database)/documents/comments/$(d.parentId)).data.articleId == d.articleId && get(/databases/$(database)/documents/comments/$(d.parentId)).data.parentId == '' && get(/databases/$(database)/documents/comments/$(d.parentId)).data.status == 'approved'); }
+  function validNew(d) {
+   return d.keys().hasAll(['articleId','parentId','authorUid','authorName','body','status','createdAt','likes','dislikes']) && d.keys().hasOnly(['articleId','parentId','authorUid','authorName','body','status','createdAt','likes','dislikes'])
+    && d.articleId is string && d.articleId.matches('posts-[A-Za-z0-9_-]{1,120}') && d.parentId is string && d.parentId.size() <= 128
+    && d.authorUid == request.auth.uid && d.authorName is string && d.authorName.size() >= 1 && d.authorName.size() <= 80
+    && d.body is string && d.body.size() >= 1 && d.body.size() <= 2000 && d.status == 'pending' && d.createdAt == request.time && d.likes == 0 && d.dislikes == 0;
+  }
+  function ballotBefore(id) { return exists(/databases/$(database)/documents/comments/$(id)/votes/$(request.auth.uid)) ? get(/databases/$(database)/documents/comments/$(id)/votes/$(request.auth.uid)).data.value : 0; }
+  function ballotAfter(id) { return existsAfter(/databases/$(database)/documents/comments/$(id)/votes/$(request.auth.uid)) ? getAfter(/databases/$(database)/documents/comments/$(id)/votes/$(request.auth.uid)).data.value : 0; }
+  function validVoteCount(id) {
+   let before = ballotBefore(id);
+   let after = ballotAfter(id);
+   return before != after && after in [-1,0,1] && resource.data.status == 'approved'
+    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes','dislikes'])
+    && request.resource.data.likes == resource.data.likes + (after == 1 ? 1 : 0) - (before == 1 ? 1 : 0)
+    && request.resource.data.dislikes == resource.data.dislikes + (after == -1 ? 1 : 0) - (before == -1 ? 1 : 0)
+    && request.resource.data.likes >= 0 && request.resource.data.dislikes >= 0;
+  }
+  match /comments/{id} {
+   allow get: if publicComment() || admin();
+   allow list: if request.query.limit <= 50 && (publicComment() || admin());
+   allow create: if google() && validNew(request.resource.data) && parentValid(request.resource.data) && openArticle(request.resource.data.articleId)
+    && getAfter(/databases/$(database)/documents/commentLimits/$(request.auth.uid)).data.commentId == id
+    && getAfter(/databases/$(database)/documents/commentLimits/$(request.auth.uid)).data.lastAt == request.time;
+   allow update: if admin() || (google() && validVoteCount(id));
+   allow delete: if admin();
+   match /votes/{uid} {
+    allow get: if google() && uid == request.auth.uid;
+    allow list: if false;
+    allow create, update: if google() && uid == request.auth.uid && request.resource.data.keys().hasOnly(['value']) && request.resource.data.value in [-1,1]
+     && get(/databases/$(database)/documents/comments/$(id)).data.status == 'approved'
+     && (getAfter(/databases/$(database)/documents/comments/$(id)).data.likes != get(/databases/$(database)/documents/comments/$(id)).data.likes || getAfter(/databases/$(database)/documents/comments/$(id)).data.dislikes != get(/databases/$(database)/documents/comments/$(id)).data.dislikes);
+    allow delete: if google() && uid == request.auth.uid && get(/databases/$(database)/documents/comments/$(id)).data.status == 'approved'
+     && (getAfter(/databases/$(database)/documents/comments/$(id)).data.likes != get(/databases/$(database)/documents/comments/$(id)).data.likes || getAfter(/databases/$(database)/documents/comments/$(id)).data.dislikes != get(/databases/$(database)/documents/comments/$(id)).data.dislikes);
+   }
+  }
+  match /commentLimits/{uid} {
+   allow get: if google() && request.auth.uid == uid;
+   allow list, delete: if false;
+   allow create, update: if google() && request.auth.uid == uid && request.resource.data.keys().hasOnly(['lastAt','commentId'])
+    && request.resource.data.lastAt == request.time && request.resource.data.commentId is string
+    && (!exists(/databases/$(database)/documents/commentLimits/$(uid)) || request.time >= resource.data.lastAt + duration.value(60,'s'))
+    && !exists(/databases/$(database)/documents/comments/$(request.resource.data.commentId))
+    && getAfter(/databases/$(database)/documents/comments/$(request.resource.data.commentId)).data.authorUid == uid
+    && getAfter(/databases/$(database)/documents/comments/$(request.resource.data.commentId)).data.createdAt == request.time;
+  }
+  match /commentSettings/{id} {
+   allow get: if true;
+   allow list: if admin() && request.query.limit <= 100;
+   allow write: if admin();
+  }
+ }
+}
