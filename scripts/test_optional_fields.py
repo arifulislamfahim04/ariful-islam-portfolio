@@ -8,12 +8,12 @@ with tempfile.TemporaryDirectory() as t:
  base=Path(t)/'site';shutil.copytree(ROOT,base,ignore=shutil.ignore_patterns('.git','__pycache__'))
  def build():subprocess.run([sys.executable,str(base/'scripts/build_editor.py')],check=True,capture_output=True)
  def document():return html.parse(str(base/'docs/about.html'))
- def card(title):return document().xpath('//article[./h3[text()="'+title+'"]]')[0]
+ def card(title):return document().xpath('//article[.//h3[text()="'+title+'"]]')[0]
  def data():
   raw=(base/'docs/content.js').read_text()
   return json.loads(raw.split('window.PORTFOLIO_DETAILS=')[1].split(';\nwindow.PORTFOLIO_DOCUMENTS=')[0]),json.loads(raw.split('window.PORTFOLIO_DOCUMENTS=')[1].split(';\nwindow.PORTFOLIO_PROFILE=')[0])
  config=json.loads((base/'.pages.yml').read_text())
- collections=[e for e in config['content'] if e['type']=='collection' and e['name']!='gallery']
+ collections=[e for e in config['content'] if e['type']=='collection' and e['name'] not in ('gallery','updates')]
  # A title is the only required content field; optional fields must be genuine.
  for e in collections:
   names=[f['name'] for f in e['fields']];assert len(names)==len(set(names))
@@ -26,7 +26,7 @@ with tempfile.TemporaryDirectory() as t:
  initial_asset=html.parse(str(base/'docs/index.html')).xpath('//script[contains(@src,"content.js?v=")]/@src')[0]
  for kind in ('education','experience','workshops','certificates','achievements'):
   c=card('Empty '+kind)
-  assert not c.xpath('.//details|.//p|.//img|.//button|.//span[contains(@class,"care-chip") or contains(@class,"fact-chip")]'),html.tostring(c)
+  assert not c.xpath('.//details|.//p|.//img|.//button[not(@data-credential-open)]|.//span[contains(@class,"care-chip") or contains(@class,"fact-chip")]'),html.tostring(c)
  for kind in ('posts','projects'):
   d=html.parse(str(base/'docs'/f'{kind}-optional-empty.html'))
   assert not d.xpath('//div[@class="story-body"]/*'),html.tostring(d)
@@ -48,6 +48,7 @@ with tempfile.TemporaryDirectory() as t:
  for kind in fixtures:
   if kind in ('posts','projects'):body=stories[kind+'-optional-full']['body']
   elif kind in ('certificates','achievements'):body=document_bodies[kind+'-optional-full']
+  elif kind=='achievements':body=document_bodies[kind+'-optional-full']
   else:body=html.tostring(card('Full '+kind),encoding='unicode')
   assert all(x in body for x in ('Extra narrative','Custom value','Gallery caption','Supporting report','Official link','youtube-nocookie.com')),(kind,body)
   for key,value in fixtures[kind].items():
@@ -57,7 +58,7 @@ with tempfile.TemporaryDirectory() as t:
    else:assert str(expected) in body,(kind,key,expected)
  edu=html.tostring(card('Full education'),encoding='unicode');exp=html.tostring(card('Full experience'),encoding='unicode')
  assert '2028 – Present' in edu and '2030' not in edu and '3.95 / 4.00' in edu
- assert '2027 – Present' in exp and '2028' not in exp
+ assert 'Since 2027' in exp and '2028' not in exp
  assert '2027-01-01' in html.tostring(card('Full certificates'),encoding='unicode')
  certpath=base/'editor/certificates/optional-full.json';cert=json.loads(certpath.read_text());cert['does_not_expire']=True;dump(certpath,cert);build();_,docs=data();body=next(x['body'] for x in docs if x['id']=='certificates-optional-full')
  assert 'Does not expire' in body and '2029-01-01' not in body

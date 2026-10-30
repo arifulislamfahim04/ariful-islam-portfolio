@@ -10,5 +10,7 @@
   "published": true,
   "order": 3,
   "video_url": "",
-  "gallery": []
+  "gallery": [],
+  "featured": true,
+  "share_enabled": true
 }

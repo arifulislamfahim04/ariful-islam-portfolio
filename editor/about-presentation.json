@@ -1,0 +1,136 @@
+{
+  "facts_heading": "A little more about me",
+  "intro_animation": true,
+  "cursor_follower": true,
+  "recommendations": [
+    {
+      "sample": true,
+      "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "name": "Sample recommendation",
+      "role": "Layout preview — replace with a real recommendation",
+      "published": true
+    }
+  ],
+  "intro_wordmark": "ariful.",
+  "now_label": "Now",
+  "specialization_label": "Specialization",
+  "study_label": "Study stage",
+  "year_label": "Year",
+  "study_level": "undergraduate",
+  "reviewed_on": "",
+  "whatsapp_url": "",
+  "whatsapp_text": "Message on WhatsApp",
+  "recruiter_details": [
+    {
+      "label": "Roles of interest",
+      "value": ""
+    },
+    {
+      "label": "Earliest start",
+      "value": ""
+    },
+    {
+      "label": "Preferred work location",
+      "value": ""
+    },
+    {
+      "label": "Relocation",
+      "value": ""
+    }
+  ],
+  "award_labels": {
+    "view": "View",
+    "open": "Open",
+    "previous_awards": "Previous awards",
+    "next_awards": "Next awards",
+    "instruction": "Each card is a separate award. Swipe, drag or use the arrow buttons to explore.",
+    "carousel_label": "Individual academic awards",
+    "empty": "Awards will appear here when published.",
+    "view_certificate": "View certificate",
+    "view_photos": "View photos",
+    "zoom_out": "Zoom out",
+    "zoom_in": "Zoom in",
+    "reset": "Reset",
+    "close": "Close viewer",
+    "image_controls": "Certificate image. Use the zoom buttons, pinch to zoom or drag to pan.",
+    "missing": "Certificate image not uploaded yet.",
+    "pdf_title": "Certificate PDF",
+    "open_file": "Open or download certificate",
+    "previous_item": "Previous item",
+    "next_item": "Next item",
+    "swipe_hint": "Swipe or use the arrow keys"
+  },
+  "learning_labels": {
+    "certificates_heading": "Certificates & short courses",
+    "workshops_heading": "Workshops & seminars",
+    "show_all": "Show all",
+    "show_less": "Show fewer",
+    "view_credential": "View credential",
+    "open_certificate": "Open certificate",
+    "view_file": "View certificate",
+    "issuer_website": "Issuer website",
+    "duration": "Duration",
+    "undated": "Undated",
+    "empty": "Published learning records will appear here."
+  },
+  "exposure_labels": {
+    "events_heading": "Industry visits & exhibitions",
+    "ongoing": "Ongoing",
+    "completed": "Completed",
+    "since": "Since",
+    "started": "Started",
+    "years": "yrs",
+    "months": "mos",
+    "visit_years": "Attendance years",
+    "more_details": "More details",
+    "view_photos": "View photos",
+    "view_document": "View supporting document",
+    "empty": "Published roles and visits will appear here.",
+    "year": "yr",
+    "month": "mo"
+  },
+  "header_subtitles": {
+    "education": "",
+    "experience": "",
+    "recognition": "",
+    "certificates": "",
+    "recommendations": "",
+    "resume": ""
+  },
+  "header_units": {
+    "qualification_one": "qualification",
+    "qualification_many": "qualifications",
+    "role_one": "role",
+    "role_many": "roles",
+    "visit_one": "visit",
+    "visit_many": "visits",
+    "skill_one": "skill",
+    "skill_many": "skills",
+    "language_one": "language",
+    "language_many": "languages",
+    "award_one": "award",
+    "award_many": "awards",
+    "certificate_one": "certificate",
+    "certificate_many": "certificates",
+    "event_one": "event",
+    "event_many": "events",
+    "recommendation_one": "recommendation",
+    "recommendation_many": "recommendations",
+    "sample_one": "sample",
+    "sample_many": "samples",
+    "page_one": "page",
+    "page_many": "pages"
+  },
+  "cv_panel": {
+    "pitch": "My education, practical experience and skills, together in one document.",
+    "download": "Download CV",
+    "view_online": "View online",
+    "preview": "",
+    "preview_alt": "First page of Ariful Islam Fahim’s CV",
+    "open_preview": "Open full CV",
+    "preview_hint": "Preview · open full CV",
+    "updated": "Updated",
+    "document": "Document",
+    "empty": "Upload your CV through the CMS to show download and preview links."
+  }
+}

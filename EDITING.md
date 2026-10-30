@@ -1,7 +1,7 @@
 # Edit your portfolio without code
 
 Open **https://app.pagescms.org/** and sign in with your GitHub account.
-Install Pages CMS for **only `arif-portfolio-studio`**, then select that repository and its `main` branch.
+Enable Pages CMS for **`ariful-islam-portfolio` (keep your older repository selected too if you still edit it)**, then select that repository and its `main` branch.
 Your editor reads the `.pages.yml` configuration automatically.
 
 ## Daily editing

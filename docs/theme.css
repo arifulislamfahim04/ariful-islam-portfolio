@@ -1,0 +1,23 @@
+/* The only animated snapshot is the whole viewport, anchored at the header button. */
+html.theme-revealing *{view-transition-name:none!important}
+html.theme-revealing::view-transition-group(root){animation:none}
+html.theme-revealing::view-transition-image-pair(root){isolation:isolate}
+html.theme-revealing::view-transition-old(root),html.theme-revealing::view-transition-new(root){animation:none;mix-blend-mode:normal}
+html.theme-revealing::view-transition-old(root){z-index:1}
+html.theme-revealing::view-transition-new(root){z-index:2}
+html.theme-color-fade,html.theme-color-fade :is(body,.site-header,.footer-panel,.theme-icon,.hero-id-card,.glass,.education-v2,.tool-row,.skill-group,.award-card,.learning-row,.exposure-v2,.cv-panel-v2,.hero-page-nav,.round-control){transition-property:background-color,color,border-color;transition-duration:300ms;transition-timing-function:ease-out}
+button.hero-theme-switch{appearance:none;display:grid;place-items:center;border:0;background:transparent;color:var(--fg);padding:0;min-height:44px;height:44px;cursor:pointer;isolation:isolate}
+button.hero-theme-switch:before{content:'';position:absolute;width:36px;height:36px;border-radius:50%;background:var(--surface);border:1px solid var(--line);transition:box-shadow .2s,transform .2s}
+button.hero-theme-switch:hover:before{box-shadow:0 0 0 5px #78cc6d18;transform:scale(1.06)}
+button.hero-theme-switch:active:before{transform:scale(.92)}
+button.hero-theme-switch:focus-visible{outline:2px solid var(--fg);outline-offset:3px;border-radius:24px}
+.theme-icon{display:block;width:23px;height:23px;position:relative;z-index:1;pointer-events:none;overflow:visible}
+.theme-sun,.theme-rays,.theme-moon{transform-origin:12px 12px;transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .4s}
+.theme-moon{opacity:0;transform:translate(7px,-4px) rotate(25deg) scale(.7)}
+[data-theme=dark] .theme-sun{opacity:0;transform:scale(.5)}
+[data-theme=dark] .theme-rays{opacity:0;transform:rotate(70deg) scale(.5)}
+[data-theme=dark] .theme-moon{opacity:1;transform:none}
+.hero-theme-switch [data-theme-label]{position:absolute;top:calc(100% + 7px);right:0;white-space:nowrap;padding:6px 9px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--fg);font-size:10px;opacity:0;pointer-events:none;transition:opacity .15s}
+.hero-theme-switch:is(:hover,:focus-visible) [data-theme-label]{opacity:1}
+[data-theme=dark] .award-card:hover:after,[data-theme=dark] .exposure-v2:hover:before{opacity:.5}
+@media(prefers-reduced-motion:reduce){html.theme-color-fade,html.theme-color-fade *,button.hero-theme-switch:before,.theme-sun,.theme-rays,.theme-moon,.hero-theme-switch [data-theme-label]{transition:none!important}button.hero-theme-switch:hover:before,button.hero-theme-switch:active:before{transform:none}}

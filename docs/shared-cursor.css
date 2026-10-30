@@ -1,0 +1,20 @@
+/* Native cursor is untouched until the controller has positioned both elements. */
+.portfolio-cursor-dot,.portfolio-cursor-ring{position:fixed;left:0;top:0;z-index:9997;pointer-events:none;contain:layout style;will-change:transform}
+.portfolio-cursor-dot{width:0;height:0}
+.portfolio-cursor-dot:before{content:'';position:absolute;left:-3px;top:-3px;width:6px;height:6px;border-radius:50%;background:#18251e;border:1px solid #f3f6ef}
+[data-theme=dark] .portfolio-cursor-dot:before{background:#f3f6ef;border-color:#18251e}
+.portfolio-cursor-ring{width:0;height:0;display:grid;place-items:center}
+.portfolio-cursor-ring:before{content:'';position:absolute;width:32px;height:32px;border:1px solid #526259;border-radius:50%;background:transparent;transition:width .16s,height .16s,border-radius .16s,background-color .16s;transform:translate(-50%,-50%);left:0;top:0}
+[data-theme=dark] .portfolio-cursor-ring:before{border-color:#78cc6d}
+.portfolio-cursor-ring>span{position:absolute;left:0;top:0;transform:translate(-50%,-50%);font:500 10px/1 FooterPoppins,Poppins,sans-serif;color:#18251e;white-space:nowrap}
+.portfolio-cursor-ring[data-state=button]:before,.portfolio-cursor-ring[data-state=disabled]:before{width:40px;height:40px;background:#78cc6d26}
+.portfolio-cursor-ring[data-state=disabled]{opacity:.45}
+.portfolio-cursor-ring[data-state=dock]:before{width:32px;height:32px;background:transparent}
+.portfolio-cursor-ring:is([data-state=drag],[data-state=release],[data-state=view]):before{width:66px;height:30px;border-radius:20px;background:#78cc6d;border-color:#78cc6d}
+.portfolio-cursor-ring.cursor-pressed:not([data-state=release]):before{width:24px;height:24px}
+.portfolio-cursor-ring.cursor-pressed:not([data-state=release])>span{visibility:hidden}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){html.custom-cursor-active body,html.custom-cursor-active body *{cursor:none!important}html.custom-cursor-active :is(input,textarea,[contenteditable]:not([contenteditable=false])){cursor:text!important}html.custom-cursor-active :is(select,iframe,object,embed,[data-native-cursor],dialog[open],dialog[open] *){cursor:auto!important}}
+@media(prefers-reduced-motion:reduce),(hover:none),(pointer:coarse){.portfolio-cursor-dot,.portfolio-cursor-ring{display:none!important}}
+
+.portfolio-cursor-dot{z-index:9998}
+.portfolio-cursor-ring:is([data-state=drag],[data-state=release],[data-state=view]):before,.portfolio-cursor-ring:is([data-state=drag],[data-state=release],[data-state=view])>span{left:42px}

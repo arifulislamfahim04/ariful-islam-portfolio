@@ -1,9 +1,13 @@
 {
   "title": "Vice Chancellor’s Award",
-  "date": "2023–2025 · 3 OF 4",
-  "institution": "",
+  "date": "2023–2025",
+  "institution": "Green University of Bangladesh",
   "body": "<p>Recognition for academic excellence at Green University of Bangladesh.</p>",
   "file": "",
   "published": true,
-  "order": 3
+  "order": 3,
+  "website": "https://www.green.edu.bd/",
+  "year": "2023–2025",
+  "semester": "",
+  "featured": false
 }

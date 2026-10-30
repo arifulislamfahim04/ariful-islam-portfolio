@@ -2,9 +2,31 @@
   "title": "Secondary School Certificate (SSC)",
   "date": "2017 – 2019",
   "institution": "Hazi Ayet Ali Bhuiyan High School · Rupganj, Narayanganj",
-  "body": "<p>Science background · GPA 4.67 / 5.00.</p>",
+  "body": "",
   "badge": "GPA 4.67/5.00",
   "file": "",
   "published": true,
-  "order": 3
+  "order": 3,
+  "website": "https://deb112494.dhakaeducationboard.gov.bd/",
+  "grade": "4.67",
+  "grade_scale": "5.00",
+  "grade_label": "GPA",
+  "subtitle": "Science group",
+  "featured": true,
+  "status": "Completed",
+  "currently_studying": false,
+  "expected_completion": false,
+  "extra_fields": [
+    {
+      "label": "Group",
+      "value": "Science"
+    }
+  ],
+  "show_progress": true,
+  "start_date": "2017",
+  "end_date": "2019",
+  "programme_duration": "2-year programme",
+  "status_pulse": false,
+  "timeline_label": "",
+  "timeline_state": "completed"
 }

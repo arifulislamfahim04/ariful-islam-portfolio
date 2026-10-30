@@ -1,0 +1,66 @@
+{
+  "site_name": "Ariful Islam Portfolio",
+  "description": "Ariful Islam Fahim’s textile engineering portfolio: apparel manufacturing, research, projects and moments.",
+  "site_url": "https://arifulislamfahim04.github.io/ariful-islam-portfolio/",
+  "social_image": "assets/ariful-portrait.jpg",
+  "footer_text": "Made with curiosity. Woven with care.",
+  "footer_mark": "A work in progress. A thread at a time.",
+  "author_bio": "Textile Engineering student exploring apparel manufacturing, quality, research and practical technology.",
+  "form_provider": "Email app",
+  "formspree_endpoint": "",
+  "web3forms_access_key": "",
+  "form_note": "Prepares a draft in your email app. Review it there, then send.",
+  "project_categories": {
+    "textile": "Academic",
+    "research": "Research",
+    "industry": "Industry",
+    "creator": "Creator"
+  },
+  "about_index": {
+    "education": "Education",
+    "experience": "Experience",
+    "skills": "Skills",
+    "recognition": "Awards",
+    "certificates": "Certificates",
+    "recommendations": "Perspectives",
+    "resume": "Résumé"
+  },
+  "navigation": [
+    {
+      "page": "index",
+      "label": "Home",
+      "icon": "home",
+      "published": true
+    },
+    {
+      "page": "about",
+      "label": "About",
+      "icon": "about",
+      "published": true
+    },
+    {
+      "page": "projects",
+      "label": "Projects",
+      "icon": "projects",
+      "published": true
+    },
+    {
+      "page": "gallery",
+      "label": "Gallery",
+      "icon": "gallery",
+      "published": true
+    },
+    {
+      "page": "blogs",
+      "label": "Blogs",
+      "icon": "blogs",
+      "published": true
+    },
+    {
+      "page": "contact",
+      "label": "Contact",
+      "icon": "contact",
+      "published": true
+    }
+  ]
+}

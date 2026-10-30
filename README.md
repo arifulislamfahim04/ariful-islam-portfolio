@@ -1,43 +1,24 @@
-# Manage your portfolio without code
+# Ariful Islam Portfolio
 
-See [EDITING.md](EDITING.md) for the visual editor and content management instructions. The new publishing workflow builds from `editor/` and retains the existing design in `templates/`. GitHub Pages should use **GitHub Actions** after this integration is activated.
+A separate copy of Ariful Islam Fahim’s portfolio with the approved mint/Poppins design. The older `arif-portfolio-studio` repository remains independent.
 
-The following original export notes are retained for reference; use the new editing guide for updates.
+## Edit without code
 
-# Arif — Personal Portfolio
+Use [Pages CMS](https://app.pagescms.org/) and select **arifulislamfahim04 → ariful-islam-portfolio → main**. The editor reads `.pages.yml`. See [EDITING.md](EDITING.md) for the content fields and [CMS_QUICK_START.md](CMS_QUICK_START.md) for a first edit.
 
-The original five-page portfolio for Ariful Islam Fahim, exported from the latest portfolio studio source. Includes Home, About, Blogs, Projects, Contact, styles, JavaScript, fonts, images, and the résumé PDF.
+Saving content commits it to this repository. GitHub Actions builds and publishes it; changes do not affect the old site.
 
-## GitHub Pages
+## Build and publish
 
-In **Settings → Pages**, choose **Deploy from a branch**, then **main** and **/docs**, and save. The published website is served entirely as static files by GitHub Pages.
-
-## Edit and preview
-
-`dist/` holds the original website files. `docs/` is the matching GitHub Pages publication copy. No Node.js, server, API key, or paid hosting is required.
-
-```sh
-python -m http.server 8000 --directory docs
-```
-
-Open http://localhost:8000. Edit the HTML, CSS, and JavaScript directly. Keep `dist/` and `docs/` synchronized when making changes.
-
-## Optional page generator
-
-The original generator and content inputs are included. To regenerate pages, use Python 3:
+GitHub Settings → Pages must use **GitHub Actions**. The `Publish portfolio content` workflow builds `docs/` from `editor/`, `templates/` and `scripts/`. Media lives in `docs/assets/`.
 
 ```sh
 python -m pip install -r requirements.txt
-python build_portfolio.py
-python publish_pages.py
+python scripts/build_editor.py
+python scripts/check_site.py
+python scripts/test_launch.py
 ```
 
-The generator uses the bundled Bootstrap icon sprite. It generates HTML and content data; CSS and interaction scripts are maintained directly. Existing unfinished portfolio content is preserved.
+Edit source files, then rebuild. Do not edit generated HTML alone. `dist/` is a legacy input; do not overwrite it with `docs/`. No frontend tokens or paid backend are needed. The contact form prepares email drafts; it does not send messages itself.
 
-## Contact form
-
-The form opens the visitor’s email application with a prepared draft. The visitor must send it there. GitHub Pages does not provide a message backend.
-
-## Assets
-
-Asset credits and third-party license notices are retained in `ICON-SOURCES.md` and `dist/assets/`. The résumé PDF is included as linked by the original portfolio. No ChatGPT sign-in is required on GitHub Pages.
+The public repository and media are visible even when a CMS entry is unpublished. Keep confidential drafts and documents elsewhere. Existing attribution and asset notices remain in the project.

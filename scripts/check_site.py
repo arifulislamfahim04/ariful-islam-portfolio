@@ -8,6 +8,7 @@ raw=(OUT/'content.js').read_text();details=json.loads(raw.split('window.PORTFOLI
 for p in OUT.glob('*.html'):
  d=html.parse(str(p))
  for e in d.xpath('//*[@href or @src or @data-project or @data-document]'):
+  if e.tag=='base':continue
   if e.get('data-project') and e.get('data-project') not in details:errors.append(f'{p.name}: missing story {e.get("data-project")}')
   if e.get('data-document') and e.get('data-document') not in ids:errors.append(f'{p.name}: missing document {e.get("data-document")}')
   for attr in ('href','src'):

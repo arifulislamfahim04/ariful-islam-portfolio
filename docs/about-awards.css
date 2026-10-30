@@ -1,0 +1,74 @@
+#recognition>.section-heading{max-width:none;position:relative;padding-right:110px}
+.awards-controls{position:absolute;right:0;top:12px;display:flex;gap:9px}
+.awards-controls .round-control{width:42px;min-width:42px;min-height:42px;height:42px;padding:9px}
+.awards-controls .icon{width:19px;height:19px}
+.awards-instruction{font-size:12px;line-height:1.7;margin-bottom:17px;color:var(--muted)}
+.awards-window{position:relative;min-width:0}
+.awards-window:after{content:'';position:absolute;inset:0 0 0 auto;width:45px;background:linear-gradient(90deg,transparent,var(--bg));pointer-events:none;opacity:0;transition:opacity .2s}
+.awards-window.has-more:after{opacity:1}
+.awards-carousel{display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;padding:5px 4px 18px;cursor:grab;touch-action:pan-x pan-y;overscroll-behavior-x:contain}
+.awards-carousel::-webkit-scrollbar{display:none}
+.awards-carousel.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.awards-carousel:focus-visible{outline:2px solid var(--fg);outline-offset:5px;border-radius:12px}
+.award-card{flex:0 0 280px;scroll-snap-align:start;border:1px solid var(--line);border-radius:20px;background:var(--surface);overflow:hidden;transition:transform .2s,border-color .2s;position:relative}
+.award-card.featured{flex-basis:320px}
+.award-card:hover,.award-card:focus-within{transform:translateY(-2px);border-color:#78cc6d77}
+.award-card:after{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(circle 180px at var(--award-x,50%) var(--award-y,50%),#78cc6d14,transparent);transition:opacity .2s}
+.award-card:is(:hover,:focus-within):after{opacity:1}
+.award-open{display:flex;flex-direction:column;width:100%;height:100%;padding:0;text-align:left;border:0;background:transparent;color:var(--fg);cursor:pointer;user-select:none}
+.award-open:focus-visible{outline:2px solid var(--fg);outline-offset:-5px;border-radius:20px}
+.award-thumbnail{position:relative;display:block;width:100%;height:165px;background:#78cc6d15;border-bottom:1px solid var(--line)}
+.award-thumbnail>img{display:block;width:100%;height:100%;object-fit:contain;padding:9px;background:#78cc6d0b;pointer-events:none;user-select:none}
+.award-placeholder{display:grid;place-items:center;width:100%;height:100%;background:radial-gradient(ellipse at 50% 100%,#78cc6d24,transparent 70%);color:#78cc6d}
+.award-placeholder>.icon{width:58px;height:58px}
+.award-view-hint{position:absolute;right:12px;bottom:12px;display:flex;gap:6px;align-items:center;padding:6px 10px;background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:20px;font-size:11px;opacity:0;transform:translateY(4px);transition:transform .2s,opacity .2s}
+.award-view-hint>.icon{width:16px;height:16px}
+.award-open:is(:hover,:focus-visible) .award-view-hint{opacity:1;transform:none}
+.award-card-content{display:flex;flex-direction:column;padding:22px;gap:10px;flex:1}
+.award-year{font-size:clamp(30px,3.5vw,46px);line-height:1.12;font-weight:600;letter-spacing:-.055em;color:var(--fg)}
+.award-semester{font-size:12px;font-weight:500;color:var(--fg);background:#78cc6d20;padding:4px 9px;border-radius:15px;align-self:flex-start}
+[data-about-refresh] .award-card h3{font-size:21px;line-height:1.3;letter-spacing:-.025em;margin:0}
+.award-issuer{font-size:12px;line-height:1.7;color:var(--muted);margin-top:auto;padding-top:4px}
+.awards-progress{height:3px;border-radius:3px;overflow:hidden;background:var(--line);margin-top:4px}
+.awards-progress>span{display:block;width:100%;height:100%;background:#78cc6d;transform:scaleX(0);transform-origin:left}
+.credential-photo-trigger{display:inline-flex;gap:8px;align-items:center;min-height:44px;padding:8px 13px;border:1px solid var(--line);border-radius:24px;color:var(--fg);background:#78cc6d18;margin-top:15px;font-size:12px}
+.credential-photo-trigger>.icon{width:19px;height:19px}
+.credential-dialog{width:min(1060px,calc(100vw - 32px));max-width:calc(100vw - 32px);max-height:94dvh;border-radius:20px;background:var(--surface);color:var(--fg);border:1px solid var(--line);padding:0;overflow:auto}
+.credential-dialog::backdrop{background:#050b08cc;backdrop-filter:blur(7px)}
+.credential-dialog[open]{animation:credential-in .25s ease-out both}
+@keyframes credential-in{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+.credential-toolbar{display:flex;align-items:center;gap:14px;padding:11px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:4;background:var(--surface)}
+#credential-counter{font-size:12px;font-variant-numeric:tabular-nums;margin-right:auto}
+.credential-toolbar .round-control{width:42px;min-width:42px;height:42px;min-height:42px;padding:8px}
+.credential-zoom-controls{display:flex;gap:5px}
+.credential-zoom-controls button{min-width:36px;min-height:40px;border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:9px;font-size:13px;padding:4px 9px}
+.credential-stage{position:relative;height:min(55dvh,570px);min-height:200px;overflow:auto;background:color-mix(in srgb,var(--bg) 90%,#78cc6d);touch-action:none;user-select:none;padding:16px}
+.credential-image-canvas{position:relative;margin:0 auto;flex:none}
+.credential-image-canvas>img{display:block;max-width:none;max-height:none;transform-origin:top left;user-select:none;-webkit-user-drag:none;cursor:zoom-in}
+.credential-stage.zoomed img{cursor:grab}
+.credential-missing{height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center}
+.credential-missing>.icon{width:68px;height:68px;color:#78cc6d}
+.credential-missing p{font-size:13px;line-height:1.7;max-width:32ch}
+.credential-pdf{width:100%;height:100%;border:0;background:white}
+.credential-caption{padding:20px 24px}
+.credential-caption h2{font-size:clamp(23px,3vw,32px);line-height:1.2;letter-spacing:-.035em}
+.credential-meta{font-size:12px;line-height:1.7;margin-top:8px;color:var(--muted)}
+.credential-photo-caption,.credential-description{font-size:13px;line-height:1.8;margin-top:12px;overflow-wrap:anywhere}
+.credential-description p{font-size:13px;line-height:1.8}
+.credential-file-link{display:inline-flex;font-size:12px;min-height:44px;align-items:center;text-decoration:underline;text-underline-offset:4px;margin-top:10px}
+.credential-navigation{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:0 24px 18px}
+.credential-navigation>span{font-size:11px;color:var(--muted)}
+.credential-navigation .round-control{width:44px;min-width:44px;padding:9px}
+.credential-dialog :is(button,a,[tabindex]):focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+@media(max-width:600px){#recognition>.section-heading{padding-right:0;padding-bottom:58px}.awards-controls{top:auto;bottom:0;right:0}.awards-carousel{gap:14px}.award-card,.award-card.featured{flex-basis:calc(100% - 26px)}.award-thumbnail{height:155px}.award-year{font-size:38px}.award-card-content{padding:20px}.credential-dialog{width:calc(100vw - 16px);max-width:calc(100vw - 16px);border-radius:15px}.credential-toolbar{padding:9px;gap:7px}.credential-stage{height:43dvh;padding:12px}.credential-caption{padding:18px}.credential-navigation{padding:0 18px 16px}.credential-zoom-controls button{min-width:32px;padding:4px 7px}.credential-navigation>span{font-size:10px}}
+@media(hover:none){.award-view-hint{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.credential-dialog[open]{animation:none}.award-card:hover,.award-card:focus-within{transform:none}.award-card,.award-view-hint,.awards-window:after{transition:none}}
+
+/* Keep viewer controls visible while long descriptions scroll independently. */
+.credential-dialog{overflow:hidden}
+.credential-dialog[open]{display:flex;flex-direction:column}
+.credential-toolbar,.credential-navigation{flex-shrink:0}
+.credential-stage{flex:0 1 auto}
+.credential-caption{max-height:26dvh;min-height:90px;overflow:auto;flex:0 1 auto}
+.credential-navigation{border-top:1px solid var(--line);padding:10px 24px;background:var(--surface)}
+@media(max-height:600px){.credential-stage{height:35dvh;min-height:110px}.credential-caption{min-height:65px}.credential-navigation{padding-block:7px}}

@@ -11,5 +11,55 @@
   "gallery_autoplay": true,
   "gallery_limit": 6,
   "gallery_page_title": "Between the threads.",
-  "gallery_page_description": "Learning, making, and the moments worth keeping."
+  "gallery_page_description": "Learning, making, and the moments worth keeping.",
+  "background_image": "assets/placeholders/pixabay-laptop-1280.webp",
+  "background_image_small": "assets/placeholders/pixabay-laptop-640.webp",
+  "roles": [
+    "Apparel manufacturing",
+    "Fabric testing & quality",
+    "Research & content creation"
+  ],
+  "gallery_mode": "Marquee",
+  "updates_heading": "A few threads in progress.",
+  "updates_intro": "Small steps, new questions, and what I’m learning along the way.",
+  "card_button_text": "Contact me",
+  "card_button_link": "contact.html",
+  "typewriter_phrases": [
+    "Textile engineering, with a practical mind.",
+    "Curious about apparel manufacturing."
+  ],
+  "status_chips": [
+    "Open to internships",
+    "Trainee roles",
+    "Apparel Manufacturing"
+  ],
+  "ticker_label": "Highlights",
+  "projects_heading": "Questions, put into practice.",
+  "notes_heading": "Notes from a curious mind.",
+  "about_teaser_heading": "Learning how things come together.",
+  "about_teaser": "<p>I’m Ariful Islam Fahim, a final-year Textile Engineering student at Green University of Bangladesh, specializing in Apparel Manufacturing.</p><p>I’m interested in materials, production and quality—and the practical questions between them.</p>",
+  "closing_heading": "Good work starts with a conversation.",
+  "greeting": "I’m",
+  "card_title": "Textile Engineering",
+  "secondary_button_text": "More about me",
+  "secondary_button_link": "about.html",
+  "card_socials": [
+    {
+      "label": "Email",
+      "source": "Email",
+      "icon": "contact"
+    },
+    {
+      "label": "LinkedIn",
+      "source": "LinkedIn",
+      "icon": "linkedin"
+    },
+    {
+      "label": "Facebook",
+      "source": "Facebook",
+      "icon": "facebook"
+    }
+  ],
+  "icon_overrides": [],
+  "site_url": "https://arifulislamfahim04.github.io/ariful-islam-portfolio/"
 }

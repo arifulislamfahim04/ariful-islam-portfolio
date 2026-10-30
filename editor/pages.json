@@ -1,0 +1,50 @@
+{
+  "index": {
+    "title": "Home",
+    "eyebrow": "",
+    "heading": "",
+    "intro": "",
+    "description": "Ariful Islam Fahim’s textile engineering portfolio: apparel manufacturing, research, projects and moments.",
+    "social_image": ""
+  },
+  "about": {
+    "title": "About",
+    "eyebrow": "THE PERSON BEHIND THE WORK",
+    "heading": "About me.",
+    "intro": "",
+    "description": "Meet Ariful Islam Fahim: education, experience, skills, awards and certificates in textile engineering.",
+    "social_image": ""
+  },
+  "projects": {
+    "title": "Projects",
+    "eyebrow": "IDEAS, EXPLORATIONS & THINGS IN PROGRESS",
+    "heading": "Selected work.",
+    "intro": "",
+    "description": "Explore Ariful Islam Fahim’s academic, research, industry and creator projects.",
+    "social_image": ""
+  },
+  "gallery": {
+    "title": "Gallery",
+    "eyebrow": "A LIFE IN FRAMES",
+    "heading": "Between the threads.",
+    "intro": "Learning, making, and the moments worth keeping.",
+    "description": "Moments from Ariful Islam Fahim’s university life, learning and work.",
+    "social_image": ""
+  },
+  "blogs": {
+    "title": "Blogs",
+    "eyebrow": "SMALL IDEAS. USEFUL TAKEAWAYS.",
+    "heading": "Field notes.",
+    "intro": "A few ideas that shape how I learn, make, and explain.",
+    "description": "Read Ariful Islam Fahim’s notes on textiles, learning and practical technology.",
+    "social_image": ""
+  },
+  "contact": {
+    "title": "Contact",
+    "eyebrow": "GOOD CONVERSATIONS START WITH AN IDEA",
+    "heading": "Let’s connect.",
+    "intro": "",
+    "description": "Contact Ariful Islam Fahim for internships, trainee roles, academic collaboration and textile opportunities.",
+    "social_image": ""
+  }
+}

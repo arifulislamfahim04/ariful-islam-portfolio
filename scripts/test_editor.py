@@ -14,7 +14,7 @@ with tempfile.TemporaryDirectory() as t:
  build();published=(base/'docs/posts-lifecycle.html').read_text();data=(base/'docs/content.js').read_text();home=(base/'docs/index.html').read_text()
  assert '<strong>bold</strong>' in published and 'A caption' in published and 'youtube-nocookie.com/embed/dQw4w9WgXcQ' in published
  assert 'onerror=' not in data and 'alert(2)' not in data and 'Unpublished private-ish draft' not in data
- assert 'identity-portrait' in home and 'assets/loom-spools.jpg' in home and 'Updated name' in home and 'example@example.com' in home
+ assert 'hero-card-photo' in home and 'assets/loom-spools.jpg' in home and 'Updated name' in home and 'example@example.com' in home
  assert not (base/'docs/posts-draft.html').exists()
  assert 'certificate-pdf' in data and 'New certificate' in data
  story.unlink();build();assert not (base/'docs/posts-lifecycle.html').exists()

@@ -16,6 +16,43 @@
         "mp4",
         "webm"
       ]
+    },
+    {
+      "name": "icons",
+      "label": "SVG icons (SVG Repo)",
+      "input": "docs/assets/icons",
+      "output": "assets/icons",
+      "rename": "safe",
+      "extensions": [
+        "svg"
+      ]
+    },
+    {
+      "name": "institution_logos",
+      "label": "Institution logos (SVG or pictures)",
+      "input": "docs/assets/institutions",
+      "output": "assets/institutions",
+      "rename": "safe",
+      "extensions": [
+        "svg",
+        "png",
+        "jpg",
+        "jpeg",
+        "webp"
+      ]
+    },
+    {
+      "name": "skill_logos",
+      "label": "Skill logos (SVG Repo)",
+      "input": "docs/assets/skill-logos",
+      "output": "assets/skill-logos",
+      "rename": "safe",
+      "extensions": [
+        "svg",
+        "png",
+        "jpg",
+        "webp"
+      ]
     }
   ],
   "content": [
@@ -28,9 +65,10 @@
       "fields": [
         {
           "name": "name",
-          "label": "Your full name",
+          "label": "Full name (also on ID card)",
           "type": "string",
-          "required": true
+          "required": true,
+          "description": "Your name appears on the ID card and across the site."
         },
         {
           "name": "role",
@@ -49,9 +87,10 @@
         },
         {
           "name": "email",
-          "label": "Email",
+          "label": "Email / ID card Mail button",
           "type": "string",
-          "required": true
+          "required": true,
+          "description": "Your real email address. The Mail icon opens a new email to this address."
         },
         {
           "name": "phone",
@@ -60,16 +99,18 @@
         },
         {
           "name": "linkedin",
-          "label": "LinkedIn URL",
-          "type": "string"
+          "label": "LinkedIn / ID card link",
+          "type": "string",
+          "description": "Paste your full LinkedIn profile URL. Opens in a new tab."
         },
         {
           "name": "photo",
-          "label": "Profile portrait (leave empty for original design)",
+          "label": "Portrait / ID card photo",
           "type": "image",
           "options": {
             "media": "uploads"
-          }
+          },
+          "description": "Upload or replace your portrait here. The ID card crops it to an upright portrait."
         },
         {
           "name": "photo_alt",
@@ -105,7 +146,8 @@
               "png",
               "webp"
             ]
-          }
+          },
+          "description": "The CV file used everywhere on the site. Upload a PDF to automatically generate the About-page preview, page count, size and file-change date. For a custom preview, use About design, motion & recommendations → CV panel."
         },
         {
           "name": "introduction",
@@ -157,6 +199,54 @@
               "name": "detail",
               "label": "Detail",
               "type": "string"
+            },
+            {
+              "name": "icon",
+              "label": "Filled statistic icon (optional)",
+              "type": "select",
+              "options": [
+                "home",
+                "about",
+                "blogs",
+                "projects",
+                "contact",
+                "sun",
+                "moon",
+                "menu",
+                "close",
+                "arrow",
+                "up",
+                "down",
+                "left",
+                "right",
+                "download",
+                "linkedin",
+                "facebook",
+                "youtube",
+                "x",
+                "phone",
+                "location",
+                "award",
+                "users",
+                "book",
+                "research",
+                "copy",
+                "check",
+                "tag",
+                "message",
+                "quote",
+                "fabric",
+                "focus",
+                "globe",
+                "language",
+                "search",
+                "certificate",
+                "zoom",
+                "minus",
+                "clock",
+                "gallery",
+                "whatsapp"
+              ]
             }
           ]
         },
@@ -180,12 +270,18 @@
               "required": false
             }
           ]
+        },
+        {
+          "name": "facebook",
+          "label": "Facebook / ID card link (optional)",
+          "type": "string",
+          "description": "Paste your full Facebook profile URL. Leave empty to hide the Facebook icon."
         }
       ]
     },
     {
       "name": "homepage",
-      "label": "Homepage design & identity tag",
+      "label": "Homepage · hero, previews & highlights",
       "type": "file",
       "path": "editor/homepage.json",
       "format": "json",
@@ -208,7 +304,8 @@
         {
           "name": "headline",
           "label": "Main headline (line breaks supported)",
-          "type": "text"
+          "type": "text",
+          "description": "Fallback role text. Normally use Hero typewriter phrases below."
         },
         {
           "name": "description",
@@ -222,13 +319,15 @@
         },
         {
           "name": "tagline",
-          "label": "Short line on portrait tag",
-          "type": "string"
+          "label": "ID card tagline",
+          "type": "string",
+          "description": "Optional short sentence on the ID card. Leave blank to hide."
         },
         {
           "name": "tag_label",
-          "label": "Identity tag label",
-          "type": "string"
+          "label": "ID card small label",
+          "type": "string",
+          "description": "Legacy card label, kept for rollback. Use Professional title on card for the current design."
         },
         {
           "name": "gallery_heading",
@@ -264,6 +363,310 @@
           "name": "gallery_page_description",
           "label": "Gallery page introduction",
           "type": "text"
+        },
+        {
+          "name": "background_image",
+          "label": "Hero background (optional, decorative)",
+          "type": "image",
+          "description": "Previous design setting, retained for rollback. The new design uses Typewriter phrases, Status chips and the shared page settings."
+        },
+        {
+          "name": "background_image_small",
+          "label": "Smaller hero background (optional; same photograph)",
+          "type": "image",
+          "description": "Previous design setting, retained for rollback. The new design uses Typewriter phrases, Status chips and the shared page settings."
+        },
+        {
+          "name": "roles",
+          "label": "Rotating interests / roles",
+          "type": "string",
+          "list": true,
+          "description": "Previous design setting, retained for rollback. The new design uses Typewriter phrases, Status chips and the shared page settings."
+        },
+        {
+          "name": "gallery_mode",
+          "label": "Default gallery preview mode",
+          "type": "select",
+          "options": {
+            "values": [
+              "Marquee",
+              "Slideshow"
+            ]
+          },
+          "description": "Previous design setting, retained for rollback. The new design uses Typewriter phrases, Status chips and the shared page settings."
+        },
+        {
+          "name": "updates_heading",
+          "label": "Updates heading",
+          "type": "string"
+        },
+        {
+          "name": "updates_intro",
+          "label": "Updates introduction",
+          "type": "text"
+        },
+        {
+          "name": "seo_title",
+          "label": "Search / sharing title (optional)",
+          "type": "string"
+        },
+        {
+          "name": "seo_description",
+          "label": "Search / sharing description (optional)",
+          "type": "text"
+        },
+        {
+          "name": "social_image",
+          "label": "Social sharing image (optional; portrait is the fallback)",
+          "type": "image"
+        },
+        {
+          "name": "site_url",
+          "label": "Canonical homepage URL (only change if you move the site)",
+          "type": "string"
+        },
+        {
+          "name": "card_button_text",
+          "label": "ID card Connect button text",
+          "type": "string",
+          "description": "The words on the contact button. Example: Connect with me"
+        },
+        {
+          "name": "card_button_link",
+          "label": "ID card Connect button destination",
+          "type": "string",
+          "description": "Use contact.html for your existing Connect page. Leave empty to hide the button."
+        },
+        {
+          "name": "typewriter_phrases",
+          "label": "Hero typewriter phrases",
+          "type": "string",
+          "description": "Add, remove or reorder these phrases. Each types and deletes in turn.",
+          "list": true
+        },
+        {
+          "name": "status_chips",
+          "label": "Profile card status chips",
+          "type": "string",
+          "description": "Short labels below your name. Add or remove as needed.",
+          "list": true
+        },
+        {
+          "name": "ticker_label",
+          "label": "Highlights ticker label",
+          "type": "string",
+          "description": "Leave empty to omit optional text."
+        },
+        {
+          "name": "projects_heading",
+          "label": "Featured projects heading",
+          "type": "string",
+          "description": "Leave empty to omit optional text."
+        },
+        {
+          "name": "notes_heading",
+          "label": "Latest notes heading",
+          "type": "string",
+          "description": "Leave empty to omit optional text."
+        },
+        {
+          "name": "about_teaser_heading",
+          "label": "About teaser heading",
+          "type": "string",
+          "description": "Leave empty to omit optional text."
+        },
+        {
+          "name": "about_teaser",
+          "label": "Short about teaser",
+          "type": "rich-text",
+          "description": "Leave empty to omit optional text."
+        },
+        {
+          "name": "closing_heading",
+          "label": "Closing contact heading",
+          "type": "string",
+          "description": "Leave empty to omit optional text."
+        },
+        {
+          "name": "greeting",
+          "label": "Greeting before your name",
+          "type": "string",
+          "description": "Optional. Edit this text without code."
+        },
+        {
+          "name": "card_title",
+          "label": "Professional title on card",
+          "type": "string",
+          "description": "Optional. Edit this text without code."
+        },
+        {
+          "name": "secondary_button_text",
+          "label": "Secondary hero button text",
+          "type": "string",
+          "description": "Optional. Edit this text without code."
+        },
+        {
+          "name": "secondary_button_link",
+          "label": "Secondary hero button destination",
+          "type": "string",
+          "description": "Optional. Edit this text without code."
+        },
+        {
+          "name": "gallery_motion_label",
+          "label": "Gallery motion switch label",
+          "type": "string",
+          "description": "Optional label beside the gallery play/pause switch. Defaults to Gallery motion."
+        },
+        {
+          "name": "ticker_motion_label",
+          "label": "Highlights motion switch label",
+          "type": "string",
+          "description": "Optional. Defaults to Highlights motion."
+        },
+        {
+          "name": "card_socials",
+          "label": "Card and footer contact buttons (up to 4)",
+          "type": "object",
+          "list": true,
+          "description": "Add, remove or reorder buttons. Only the first four are displayed. A blank destination hides that button. Email, LinkedIn and Facebook reuse your Profile fields.",
+          "fields": [
+            {
+              "name": "label",
+              "label": "Button label",
+              "type": "string"
+            },
+            {
+              "name": "source",
+              "label": "Use link from",
+              "type": "select",
+              "options": [
+                "Email",
+                "LinkedIn",
+                "Facebook",
+                "Custom URL"
+              ]
+            },
+            {
+              "name": "url",
+              "label": "Custom URL (only for Custom URL)",
+              "type": "string",
+              "description": "Full https:// URL for YouTube or another profile. Email and LinkedIn values belong in Profile."
+            },
+            {
+              "name": "icon",
+              "label": "Filled icon",
+              "type": "select",
+              "options": [
+                "home",
+                "about",
+                "blogs",
+                "projects",
+                "contact",
+                "sun",
+                "moon",
+                "menu",
+                "close",
+                "arrow",
+                "up",
+                "down",
+                "left",
+                "right",
+                "download",
+                "linkedin",
+                "facebook",
+                "youtube",
+                "x",
+                "phone",
+                "location",
+                "award",
+                "users",
+                "book",
+                "research",
+                "copy",
+                "check",
+                "tag",
+                "message",
+                "quote",
+                "fabric",
+                "focus",
+                "globe",
+                "language",
+                "search",
+                "certificate",
+                "zoom",
+                "minus",
+                "clock",
+                "gallery",
+                "whatsapp"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "icon_overrides",
+          "label": "Replace icons (Home and About)",
+          "type": "object",
+          "list": true,
+          "description": "Replace a site icon with your uploaded SVG Repo icon. The same key is used by the homepage, About page and shared footer.",
+          "fields": [
+            {
+              "name": "key",
+              "label": "Icon to replace",
+              "type": "select",
+              "options": [
+                "home",
+                "about",
+                "blogs",
+                "projects",
+                "contact",
+                "sun",
+                "moon",
+                "menu",
+                "close",
+                "arrow",
+                "up",
+                "down",
+                "left",
+                "right",
+                "download",
+                "linkedin",
+                "facebook",
+                "youtube",
+                "x",
+                "phone",
+                "location",
+                "award",
+                "users",
+                "book",
+                "research",
+                "copy",
+                "check",
+                "tag",
+                "message",
+                "quote",
+                "fabric",
+                "focus",
+                "globe",
+                "language",
+                "search",
+                "certificate",
+                "zoom",
+                "minus",
+                "clock",
+                "gallery",
+                "whatsapp"
+              ]
+            },
+            {
+              "name": "image",
+              "label": "Replacement SVG",
+              "type": "file",
+              "options": {
+                "media": "icons"
+              },
+              "description": "Upload an SVG, using a simple filename. A transparent background works best."
+            }
+          ]
         }
       ],
       "operations": {
@@ -324,53 +727,6 @@
           ]
         },
         {
-          "name": "skills",
-          "label": "Skill groups",
-          "type": "object",
-          "list": true,
-          "fields": [
-            {
-              "name": "title",
-              "label": "Title",
-              "type": "string"
-            },
-            {
-              "name": "body",
-              "label": "Description",
-              "type": "rich-text",
-              "options": {
-                "format": "html",
-                "media": "uploads",
-                "switcher": false
-              }
-            },
-            {
-              "name": "items",
-              "label": "Skills",
-              "type": "string",
-              "list": true
-            }
-          ]
-        },
-        {
-          "name": "languages",
-          "label": "Languages",
-          "type": "object",
-          "list": true,
-          "fields": [
-            {
-              "name": "title",
-              "label": "Language",
-              "type": "string"
-            },
-            {
-              "name": "description",
-              "label": "Proficiency",
-              "type": "string"
-            }
-          ]
-        },
-        {
           "name": "recommendations",
           "label": "Recommendations",
           "type": "object",
@@ -413,6 +769,12 @@
                 "media": "uploads",
                 "switcher": false
               }
+            },
+            {
+              "name": "show_publicly",
+              "label": "Show this reference publicly",
+              "type": "boolean",
+              "description": "Off by default. Enable to publish this person’s contact details."
             }
           ]
         },
@@ -440,6 +802,30 @@
             "media": "uploads",
             "switcher": false
           }
+        },
+        {
+          "name": "transcript_public",
+          "label": "Show transcript publicly",
+          "type": "boolean",
+          "description": "Off by default. Enable only when you want your transcript visible."
+        },
+        {
+          "name": "references_notice",
+          "label": "Private references notice",
+          "type": "string",
+          "description": "Shown when no references are marked public."
+        },
+        {
+          "name": "image_alt",
+          "label": "About photo description",
+          "type": "string",
+          "description": "Describe the secondary photo for visitors who cannot see it."
+        },
+        {
+          "name": "image_caption",
+          "label": "About photo caption",
+          "type": "string",
+          "description": "The secondary photo is selected in Profile → Secondary image."
         }
       ]
     },
@@ -668,6 +1054,39 @@
           "label": "Display order (smaller first)",
           "type": "number",
           "default": 10
+        },
+        {
+          "name": "featured",
+          "label": "Feature on homepage",
+          "type": "boolean",
+          "description": "Enabled by default for existing entries; turn off to hide from the home preview."
+        },
+        {
+          "name": "seo_title",
+          "label": "Search / sharing title",
+          "type": "string",
+          "description": "Optional override. Your name is appended automatically."
+        },
+        {
+          "name": "seo_description",
+          "label": "Search / sharing description",
+          "type": "text",
+          "description": "Optional short description for search engines and social sharing."
+        },
+        {
+          "name": "social_image",
+          "label": "Sharing image",
+          "type": "image",
+          "description": "Optional social preview image.",
+          "options": {
+            "media": "uploads"
+          }
+        },
+        {
+          "name": "share_enabled",
+          "label": "Show share button",
+          "type": "boolean",
+          "description": "Enabled by default; turn off to hide the share button."
         }
       ]
     },
@@ -946,6 +1365,52 @@
           "label": "Display order (smaller first)",
           "type": "number",
           "default": 10
+        },
+        {
+          "name": "featured",
+          "label": "Feature on homepage",
+          "type": "boolean",
+          "description": "Enabled by default for existing entries; turn off to hide from the home preview."
+        },
+        {
+          "name": "seo_title",
+          "label": "Search / sharing title",
+          "type": "string",
+          "description": "Optional override. Your name is appended automatically."
+        },
+        {
+          "name": "seo_description",
+          "label": "Search / sharing description",
+          "type": "text",
+          "description": "Optional short description for search engines and social sharing."
+        },
+        {
+          "name": "social_image",
+          "label": "Sharing image",
+          "type": "image",
+          "description": "Optional social preview image.",
+          "options": {
+            "media": "uploads"
+          }
+        },
+        {
+          "name": "share_enabled",
+          "label": "Show share button",
+          "type": "boolean",
+          "description": "Enabled by default; turn off to hide the share button."
+        },
+        {
+          "name": "tools",
+          "label": "Tools used",
+          "type": "string",
+          "description": "Optional tools or software used in this project.",
+          "list": true
+        },
+        {
+          "name": "duration",
+          "label": "Project duration",
+          "type": "string",
+          "description": "Optional readable duration, for example 6 weeks."
         }
       ]
     },
@@ -1043,25 +1508,29 @@
           "name": "start_date",
           "label": "Start date (optional)",
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Use YYYY (2019), YYYY-MM (2022-10), or YYYY-MM-DD. Keep the precision you know. The bar measures elapsed calendar time and remains full after the end date."
         },
         {
           "name": "end_date",
           "label": "End date (optional)",
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Use YYYY (2019), YYYY-MM (2022-10), or YYYY-MM-DD. Keep the precision you know. The bar measures elapsed calendar time and remains full after the end date."
         },
         {
           "name": "currently_studying",
           "label": "Currently studying (optional)",
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Enable only while studying. Leave off while waiting for results; set the status text below instead."
         },
         {
           "name": "grade",
-          "label": "CGPA / GPA / classification (optional)",
+          "label": "Result value (CGPA or GPA)",
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Your actual result, for example 3.90 or 4.92. The label and maximum scale are separate fields."
         },
         {
           "name": "grade_scale",
@@ -1213,12 +1682,151 @@
           "label": "Display order (smaller first)",
           "type": "number",
           "default": 10
+        },
+        {
+          "name": "website",
+          "label": "Institution / organization website",
+          "type": "string",
+          "description": "Paste the official website URL. The institution name becomes a link in a new tab."
+        },
+        {
+          "name": "institution_logo",
+          "label": "Institution / organisation logo (optional)",
+          "type": "image",
+          "options": {
+            "media": "institution_logos"
+          },
+          "description": "Upload an official SVG, PNG, JPG or WebP logo. Leave blank for an initial badge. SVG files display as images, not executable page markup."
+        },
+        {
+          "name": "featured",
+          "label": "Featured education card",
+          "type": "boolean",
+          "description": "Enable for your main degree. Other cards use the compact layout.",
+          "required": false
+        },
+        {
+          "name": "subtitle",
+          "label": "Subtitle",
+          "type": "string",
+          "description": "For example: Major in Apparel Manufacturing. Leave blank to hide.",
+          "required": false
+        },
+        {
+          "name": "grade_label",
+          "label": "Result label",
+          "type": "string",
+          "description": "Use CGPA for university, GPA for school or college. The maximum comes from Grade scale.",
+          "required": false
+        },
+        {
+          "name": "expected_completion",
+          "label": "Expected completion date",
+          "type": "boolean",
+          "description": "Adds Expected after the dates. Leave off after completion is confirmed.",
+          "required": false
+        },
+        {
+          "name": "status",
+          "label": "Current status",
+          "type": "string",
+          "description": "For example Results pending, In progress or Completed. Leave blank to hide the badge.",
+          "required": false
+        },
+        {
+          "name": "focus",
+          "label": "Focus (optional)",
+          "type": "string",
+          "description": "Optional study focus shown inside View details.",
+          "required": false
+        },
+        {
+          "name": "student_id",
+          "label": "Student ID (optional, public)",
+          "type": "string",
+          "description": "Only enter this if you want it visible to everyone. Leaving it blank hides the field.",
+          "required": false
+        },
+        {
+          "name": "transcript_link",
+          "label": "Transcript link (optional, public)",
+          "type": "string",
+          "description": "Link only a document you want visitors to view. Leave blank to hide. This does not use your private profile transcript.",
+          "required": false
+        },
+        {
+          "name": "details_label",
+          "label": "Details button text",
+          "type": "string",
+          "description": "Defaults to View details.",
+          "required": false
+        },
+        {
+          "name": "show_progress",
+          "label": "Show qualification timeline bar",
+          "type": "boolean",
+          "default": false,
+          "description": "Show a date-based timeline. Past qualifications stay at 100%; this does not change your status text or GPA/CGPA. Enter start and end dates above."
+        },
+        {
+          "name": "timeline_label",
+          "label": "Timeline caption",
+          "type": "string",
+          "default": "",
+          "description": "Optional caption beside the status. Leave blank for a cleaner card."
+        },
+        {
+          "name": "programme_duration",
+          "label": "Programme duration",
+          "type": "string",
+          "description": "For example 4-year programme or 2-year programme. This is the course length, separate from its calendar dates."
+        },
+        {
+          "name": "status_pulse",
+          "label": "Softly pulse the status dot",
+          "type": "boolean",
+          "default": false,
+          "description": "Enable for Results pending or another current status. Keep off for Completed. Reduced-motion visitors see a still dot."
+        },
+        {
+          "name": "timeline_state",
+          "label": "Timeline marker state",
+          "type": "select",
+          "default": "completed",
+          "options": {
+            "values": [
+              "completed",
+              "in-progress",
+              "results-pending",
+              "upcoming"
+            ]
+          },
+          "description": "Completed: filled dot. In progress or results pending: a gentle ring pulse. Upcoming: hollow dot. This controls only the timeline marker, not your dates, status text or result."
+        },
+        {
+          "name": "use_for_now_panel",
+          "label": "Use this qualification in the About Now panel",
+          "type": "boolean",
+          "default": false,
+          "description": "Enable for one qualification. Its status and specialization appear in the Now panel. If multiple are enabled, the first by display order is used."
+        },
+        {
+          "name": "programme_years",
+          "label": "Number of programme years",
+          "type": "number",
+          "description": "For the Now panel’s year segments, for example 4. This is not a graduation confirmation."
+        },
+        {
+          "name": "programme_year",
+          "label": "Programme year reached",
+          "type": "number",
+          "description": "For example 4 fills Years 1–4. Your result-pending or completed status remains separate."
         }
       ]
     },
     {
       "name": "experience",
-      "label": "Experience",
+      "label": "Experience, leadership & visits",
       "type": "collection",
       "path": "editor/experience",
       "format": "json",
@@ -1228,7 +1836,7 @@
         "primary": "title",
         "fields": [
           "title",
-          "date",
+          "record_type",
           "published",
           "order"
         ],
@@ -1245,12 +1853,14 @@
         {
           "name": "date",
           "label": "Date / period (or use start and end dates below)",
-          "type": "string"
+          "type": "string",
+          "description": "Fallback display wording, useful for approximate event dates such as Around mid-2025 · One visit."
         },
         {
           "name": "institution",
-          "label": "Institution / organization",
-          "type": "string"
+          "label": "Organization / company",
+          "type": "string",
+          "description": "For example Fariha Knit Tex Ltd. or Green University of Bangladesh."
         },
         {
           "name": "body",
@@ -1310,19 +1920,22 @@
           "name": "start_date",
           "label": "Start date (optional)",
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Use YYYY-MM for a known month, or YYYY when only the year is known. Do not invent a month."
         },
         {
           "name": "end_date",
           "label": "End date (optional)",
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Optional. Use YYYY-MM or YYYY. Leave blank if you cannot remember; a past role will still show Completed."
         },
         {
           "name": "currently_working",
-          "label": "Currently working here (optional)",
+          "label": "This role is ongoing",
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Turn off for completed internships or past leadership roles. The end date may stay blank if unknown."
         },
         {
           "name": "organization_url",
@@ -1332,14 +1945,15 @@
         },
         {
           "name": "responsibilities",
-          "label": "Responsibilities (optional)",
+          "label": "Responsibilities (always visible)",
           "type": "rich-text",
           "required": false,
           "options": {
             "format": "html",
             "media": "uploads",
             "switcher": false
-          }
+          },
+          "description": "Use 2–3 short bullet points. These are shown without opening More details."
         },
         {
           "name": "achievements",
@@ -1484,6 +2098,97 @@
           "label": "Display order (smaller first)",
           "type": "number",
           "default": 10
+        },
+        {
+          "name": "website",
+          "label": "Institution / organization website",
+          "type": "string",
+          "description": "Paste the official website URL. The institution name becomes a link in a new tab."
+        },
+        {
+          "name": "institution_logo",
+          "label": "Institution / organisation logo (optional)",
+          "type": "image",
+          "options": {
+            "media": "uploads"
+          },
+          "description": "Upload your institution logo. Leave blank for an initial badge."
+        },
+        {
+          "name": "image",
+          "label": "Certificate / leadership photo (optional)",
+          "type": "image",
+          "options": {
+            "media": "uploads"
+          },
+          "description": "Appears automatically in the shared image viewer. Awards show a medal placeholder until you upload a photo."
+        },
+        {
+          "name": "image_alt",
+          "label": "Photo description (accessibility)",
+          "type": "string",
+          "description": "Describe the certificate or photograph in plain English."
+        },
+        {
+          "name": "record_type",
+          "label": "Layout: role or event / visit",
+          "type": "select",
+          "default": "role",
+          "options": {
+            "values": [
+              "role",
+              "event"
+            ]
+          },
+          "description": "Role: internship, job, volunteering or leadership, shown as a full-width card. Event: a visit or exhibition, shown in the compact grid. Workshops and seminars have their own CMS collection."
+        },
+        {
+          "name": "event_type",
+          "label": "Event type (events only)",
+          "type": "string",
+          "description": "For example Industry visit or Exhibition. Leave blank to hide the chip."
+        },
+        {
+          "name": "venue",
+          "label": "Venue (events only)",
+          "type": "string"
+        },
+        {
+          "name": "city",
+          "label": "City / location (events only)",
+          "type": "string"
+        },
+        {
+          "name": "years",
+          "label": "Confirmed attendance years (events only)",
+          "type": "string",
+          "list": true,
+          "description": "Add only years you actually attended, one per item. Leave empty to show Date / period instead. A range does not automatically create year pips."
+        },
+        {
+          "name": "impact",
+          "label": "Impact figures (roles, optional)",
+          "type": "object",
+          "list": true,
+          "description": "Only add real figures you can support. Blank values are hidden.",
+          "fields": [
+            {
+              "name": "value",
+              "label": "Figure (for example 40+)",
+              "type": "string"
+            },
+            {
+              "name": "label",
+              "label": "Meaning (for example Students represented)",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "duration_label",
+          "label": "Duration wording (optional)",
+          "type": "string",
+          "description": "Optional wording such as About 3 months. If blank, duration is calculated only when full start/end months are available. No duration is guessed for a completed role with an unknown end date."
         }
       ]
     },
@@ -1499,7 +2204,7 @@
         "primary": "title",
         "fields": [
           "title",
-          "date",
+          "year",
           "published",
           "order"
         ],
@@ -1520,7 +2225,7 @@
         },
         {
           "name": "institution",
-          "label": "Institution / organization",
+          "label": "Issuer / institution",
           "type": "string"
         },
         {
@@ -1574,13 +2279,14 @@
         },
         {
           "name": "verification_url",
-          "label": "Verification URL (optional)",
+          "label": "View credential link (optional)",
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Paste the public credential verification URL. Leave blank to hide the link."
         },
         {
           "name": "skills",
-          "label": "Skills gained (optional)",
+          "label": "Skills learned (optional)",
           "type": "string",
           "required": false,
           "list": true
@@ -1710,6 +2416,48 @@
           "label": "Display order (smaller first)",
           "type": "number",
           "default": 10
+        },
+        {
+          "name": "website",
+          "label": "Institution / organization website",
+          "type": "string",
+          "description": "Paste the official website URL. The institution name becomes a link in a new tab."
+        },
+        {
+          "name": "image",
+          "label": "Certificate thumbnail / photo (optional)",
+          "type": "image",
+          "options": {
+            "media": "uploads"
+          },
+          "description": "Upload a clear scan or photo. Clicking it opens the same viewer used for awards. You can also upload a PDF in Certificate / supporting document."
+        },
+        {
+          "name": "image_alt",
+          "label": "Certificate image description",
+          "type": "string",
+          "description": "Describe the certificate or photograph in plain English."
+        },
+        {
+          "name": "year",
+          "label": "Year",
+          "type": "string",
+          "description": "Four-digit year, for example 2026. Newest years appear first; Display order sorts records within each year. Leave blank to use the existing date."
+        },
+        {
+          "name": "institution_logo",
+          "label": "Issuer logo (optional)",
+          "type": "image",
+          "options": {
+            "media": "uploads"
+          },
+          "description": "Upload an SVG, PNG or WebP logo. Shown in grayscale until hover or keyboard focus. Hidden on small phone screens."
+        },
+        {
+          "name": "duration",
+          "label": "Course / event duration (optional)",
+          "type": "string",
+          "description": "For example 6 hours or 4 weeks. Leave blank if unknown."
         }
       ]
     },
@@ -1746,12 +2494,12 @@
         },
         {
           "name": "institution",
-          "label": "Institution / organization",
+          "label": "Issuer / institution",
           "type": "string"
         },
         {
           "name": "body",
-          "label": "Description",
+          "label": "Award description",
           "type": "rich-text",
           "options": {
             "format": "html",
@@ -1940,8 +2688,55 @@
           "label": "Display order (smaller first)",
           "type": "number",
           "default": 10
+        },
+        {
+          "name": "website",
+          "label": "Institution / organization website",
+          "type": "string",
+          "description": "Paste the official website URL. The institution name becomes a link in a new tab."
+        },
+        {
+          "name": "year",
+          "label": "Year or year range",
+          "type": "string",
+          "description": "For example 2025. Keep a range only when the exact year is not yet known."
+        },
+        {
+          "name": "semester",
+          "label": "Semester / term",
+          "type": "string",
+          "description": "For example Spring 2024. Leave blank until you know the actual term."
+        },
+        {
+          "name": "received_date",
+          "label": "Date received (optional)",
+          "type": "string",
+          "description": "YYYY-MM-DD. For your record; use Display order to arrange the carousel."
+        },
+        {
+          "name": "featured",
+          "label": "Featured card",
+          "type": "boolean",
+          "default": false,
+          "description": "Makes this individual award slightly larger. It does not group awards."
+        },
+        {
+          "name": "image",
+          "label": "Certificate / leadership photo (optional)",
+          "type": "image",
+          "options": {
+            "media": "uploads"
+          },
+          "description": "Appears automatically in the shared image viewer. Awards show a medal placeholder until you upload a photo."
+        },
+        {
+          "name": "image_alt",
+          "label": "Photo description (accessibility)",
+          "type": "string",
+          "description": "Describe the certificate or photograph in plain English."
         }
-      ]
+      ],
+      "description": "One record per individual award or semester. Add another entry whenever you receive another award; records are never merged."
     },
     {
       "name": "workshops",
@@ -1955,7 +2750,7 @@
         "primary": "title",
         "fields": [
           "title",
-          "date",
+          "year",
           "published",
           "order"
         ],
@@ -2011,9 +2806,10 @@
         },
         {
           "name": "duration",
-          "label": "Duration (optional)",
+          "label": "Course / event duration (optional)",
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "For example 6 hours or 4 weeks. Leave blank if unknown."
         },
         {
           "name": "location",
@@ -2163,6 +2959,53 @@
           "label": "Display order (smaller first)",
           "type": "number",
           "default": 10
+        },
+        {
+          "name": "website",
+          "label": "Institution / organization website",
+          "type": "string",
+          "description": "Paste the official website URL. The institution name becomes a link in a new tab."
+        },
+        {
+          "name": "year",
+          "label": "Year",
+          "type": "string",
+          "description": "Four-digit year, for example 2026. Newest years appear first; Display order sorts records within each year. Leave blank to use the existing date."
+        },
+        {
+          "name": "institution_logo",
+          "label": "Issuer logo (optional)",
+          "type": "image",
+          "options": {
+            "media": "uploads"
+          },
+          "description": "Upload an SVG, PNG or WebP logo. Shown in grayscale until hover or keyboard focus. Hidden on small phone screens."
+        },
+        {
+          "name": "image",
+          "label": "Certificate thumbnail / photo (optional)",
+          "type": "image",
+          "options": {
+            "media": "uploads"
+          },
+          "description": "Upload a clear scan or photo. Clicking it opens the same viewer used for awards. You can also upload a PDF in Certificate / supporting document."
+        },
+        {
+          "name": "image_alt",
+          "label": "Certificate image description",
+          "type": "string"
+        },
+        {
+          "name": "verification_url",
+          "label": "View credential link (optional)",
+          "type": "string",
+          "description": "Paste the public credential verification URL. Leave blank to hide the link."
+        },
+        {
+          "name": "skills",
+          "label": "Skills learned (optional)",
+          "type": "string",
+          "list": true
         }
       ]
     },
@@ -2282,6 +3125,2682 @@
           "label": "Show on website",
           "type": "boolean",
           "default": true
+        }
+      ]
+    },
+    {
+      "name": "updates",
+      "label": "Homepage news & updates",
+      "type": "collection",
+      "path": "editor/updates",
+      "format": "json",
+      "filename": "{primary}.json",
+      "view": {
+        "fields": [
+          "title",
+          "date",
+          "topic",
+          "sample",
+          "published"
+        ],
+        "primary": "title",
+        "sort": [
+          "date"
+        ],
+        "default": {
+          "sort": "date",
+          "order": "desc"
+        }
+      },
+      "fields": [
+        {
+          "name": "title",
+          "label": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "date",
+          "label": "Date",
+          "type": "date"
+        },
+        {
+          "name": "topic",
+          "label": "Topic",
+          "type": "select",
+          "options": {
+            "values": [
+              "Content creation",
+              "Research",
+              "Fabric testing",
+              "Apparel manufacturing"
+            ]
+          }
+        },
+        {
+          "name": "text",
+          "label": "Short update (write this as a complete sentence)",
+          "type": "text"
+        },
+        {
+          "name": "image",
+          "label": "Optional image",
+          "type": "image"
+        },
+        {
+          "name": "image_alt",
+          "label": "Describe the image (if added)",
+          "type": "string"
+        },
+        {
+          "name": "link",
+          "label": "Optional link",
+          "type": "string"
+        },
+        {
+          "name": "sample",
+          "label": "This is an example, not a real update",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "published",
+          "label": "Show on website",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "ticker_text",
+          "label": "Longer headline for homepage ticker (optional)",
+          "type": "text",
+          "description": "Use a longer sentence in the moving Highlights strip. Leave blank to use the update title. The card keeps its short title."
+        }
+      ]
+    },
+    {
+      "name": "site",
+      "label": "Site settings · footer, forms & labels",
+      "type": "file",
+      "path": "editor/site.json",
+      "format": "json",
+      "fields": [
+        {
+          "name": "site_name",
+          "label": "Site Name",
+          "type": "string",
+          "description": "Editable site-wide content."
+        },
+        {
+          "name": "description",
+          "label": "Description",
+          "type": "string",
+          "description": "Editable site-wide content."
+        },
+        {
+          "name": "site_url",
+          "label": "Site Url",
+          "type": "string",
+          "description": "Editable site-wide content."
+        },
+        {
+          "name": "social_image",
+          "label": "Social Image",
+          "type": "image",
+          "description": "Editable site-wide content.",
+          "options": {
+            "media": "uploads"
+          }
+        },
+        {
+          "name": "footer_text",
+          "label": "Footer Text",
+          "type": "string",
+          "description": "Editable site-wide content."
+        },
+        {
+          "name": "footer_mark",
+          "label": "Footer Mark",
+          "type": "string",
+          "description": "Editable site-wide content."
+        },
+        {
+          "name": "author_bio",
+          "label": "Author Bio",
+          "type": "string",
+          "description": "Editable site-wide content."
+        },
+        {
+          "name": "form_provider",
+          "label": "Contact form delivery",
+          "type": "select",
+          "description": "Email app works immediately. Formspree/Web3Forms need your own form service details.",
+          "options": {
+            "values": [
+              "Email app",
+              "Formspree",
+              "Web3Forms"
+            ]
+          }
+        },
+        {
+          "name": "formspree_endpoint",
+          "label": "Formspree form endpoint",
+          "type": "string",
+          "description": "Public form identifiers only. Never enter a private API secret."
+        },
+        {
+          "name": "web3forms_access_key",
+          "label": "Web3Forms public access key",
+          "type": "string",
+          "description": "Public form identifiers only. Never enter a private API secret."
+        },
+        {
+          "name": "form_note",
+          "label": "Form Note",
+          "type": "string",
+          "description": "Editable site-wide content."
+        },
+        {
+          "name": "project_categories",
+          "label": "Project Categories",
+          "type": "object",
+          "description": "Edit the labels shown on the site.",
+          "fields": [
+            {
+              "name": "textile",
+              "label": "Textile",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "research",
+              "label": "Research",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "industry",
+              "label": "Industry",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "creator",
+              "label": "Creator",
+              "type": "string",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "about_index",
+          "label": "About Index",
+          "type": "object",
+          "description": "Edit the labels shown on the site.",
+          "fields": [
+            {
+              "name": "education",
+              "label": "Education",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "experience",
+              "label": "Experience",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "skills",
+              "label": "Skills",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "recognition",
+              "label": "Recognition",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "certificates",
+              "label": "Certificates",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "recommendations",
+              "label": "Recommendations",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "resume",
+              "label": "Resume",
+              "type": "string",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "navigation",
+          "label": "Shared navigation (header, menu, dock & footer)",
+          "type": "object",
+          "list": true,
+          "description": "Reorder these items once to update navigation everywhere. Changing a label does not change the page URL. Turn off Show link to hide it from navigation.",
+          "fields": [
+            {
+              "name": "page",
+              "label": "Page",
+              "type": "select",
+              "options": {
+                "values": [
+                  "index",
+                  "about",
+                  "projects",
+                  "gallery",
+                  "blogs",
+                  "contact"
+                ]
+              }
+            },
+            {
+              "name": "label",
+              "label": "Link label",
+              "type": "string"
+            },
+            {
+              "name": "icon",
+              "label": "Icon",
+              "type": "select",
+              "options": {
+                "values": [
+                  "home",
+                  "about",
+                  "blogs",
+                  "projects",
+                  "contact",
+                  "sun",
+                  "moon",
+                  "menu",
+                  "close",
+                  "arrow",
+                  "up",
+                  "down",
+                  "left",
+                  "right",
+                  "download",
+                  "linkedin",
+                  "facebook",
+                  "youtube",
+                  "x",
+                  "phone",
+                  "location",
+                  "award",
+                  "users",
+                  "book",
+                  "research",
+                  "copy",
+                  "check",
+                  "tag",
+                  "message",
+                  "quote",
+                  "fabric",
+                  "focus",
+                  "globe",
+                  "language",
+                  "search",
+                  "certificate",
+                  "zoom",
+                  "minus",
+                  "clock",
+                  "gallery",
+                  "whatsapp"
+                ]
+              }
+            },
+            {
+              "name": "published",
+              "label": "Show link",
+              "type": "boolean",
+              "default": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "pages",
+      "label": "Page headings & SEO",
+      "type": "file",
+      "path": "editor/pages.json",
+      "format": "json",
+      "fields": [
+        {
+          "name": "index",
+          "label": "Index",
+          "type": "object",
+          "description": "Heading and sharing settings for this page.",
+          "fields": [
+            {
+              "name": "title",
+              "label": "Title",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "intro",
+              "label": "Intro",
+              "type": "text",
+              "description": ""
+            },
+            {
+              "name": "description",
+              "label": "Description",
+              "type": "text",
+              "description": ""
+            },
+            {
+              "name": "social_image",
+              "label": "Social Image",
+              "type": "image",
+              "description": "",
+              "options": {
+                "media": "uploads"
+              }
+            }
+          ]
+        },
+        {
+          "name": "about",
+          "label": "About",
+          "type": "object",
+          "description": "Heading and sharing settings for this page.",
+          "fields": [
+            {
+              "name": "title",
+              "label": "Title",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "intro",
+              "label": "Intro",
+              "type": "text",
+              "description": ""
+            },
+            {
+              "name": "description",
+              "label": "Description",
+              "type": "text",
+              "description": ""
+            },
+            {
+              "name": "social_image",
+              "label": "Social Image",
+              "type": "image",
+              "description": "",
+              "options": {
+                "media": "uploads"
+              }
+            }
+          ]
+        },
+        {
+          "name": "projects",
+          "label": "Projects",
+          "type": "object",
+          "description": "Heading and sharing settings for this page.",
+          "fields": [
+            {
+              "name": "title",
+              "label": "Title",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "intro",
+              "label": "Intro",
+              "type": "text",
+              "description": ""
+            },
+            {
+              "name": "description",
+              "label": "Description",
+              "type": "text",
+              "description": ""
+            },
+            {
+              "name": "social_image",
+              "label": "Social Image",
+              "type": "image",
+              "description": "",
+              "options": {
+                "media": "uploads"
+              }
+            }
+          ]
+        },
+        {
+          "name": "gallery",
+          "label": "Gallery",
+          "type": "object",
+          "description": "Heading and sharing settings for this page.",
+          "fields": [
+            {
+              "name": "title",
+              "label": "Title",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "intro",
+              "label": "Intro",
+              "type": "text",
+              "description": ""
+            },
+            {
+              "name": "description",
+              "label": "Description",
+              "type": "text",
+              "description": ""
+            },
+            {
+              "name": "social_image",
+              "label": "Social Image",
+              "type": "image",
+              "description": "",
+              "options": {
+                "media": "uploads"
+              }
+            }
+          ]
+        },
+        {
+          "name": "blogs",
+          "label": "Blogs",
+          "type": "object",
+          "description": "Heading and sharing settings for this page.",
+          "fields": [
+            {
+              "name": "title",
+              "label": "Title",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "intro",
+              "label": "Intro",
+              "type": "text",
+              "description": ""
+            },
+            {
+              "name": "description",
+              "label": "Description",
+              "type": "text",
+              "description": ""
+            },
+            {
+              "name": "social_image",
+              "label": "Social Image",
+              "type": "image",
+              "description": "",
+              "options": {
+                "media": "uploads"
+              }
+            }
+          ]
+        },
+        {
+          "name": "contact",
+          "label": "Contact",
+          "type": "object",
+          "description": "Heading and sharing settings for this page.",
+          "fields": [
+            {
+              "name": "title",
+              "label": "Title",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "intro",
+              "label": "Intro",
+              "type": "text",
+              "description": ""
+            },
+            {
+              "name": "description",
+              "label": "Description",
+              "type": "text",
+              "description": ""
+            },
+            {
+              "name": "social_image",
+              "label": "Social Image",
+              "type": "image",
+              "description": "",
+              "options": {
+                "media": "uploads"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "interface",
+      "label": "Interface wording · buttons, forms & section labels",
+      "type": "file",
+      "path": "editor/interface.json",
+      "format": "json",
+      "fields": [
+        {
+          "name": "a97fb50947",
+          "label": "BLOGS",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "f398f46c70",
+          "label": "SMALL IDEAS. USEFUL TAKEAWAYS.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "c326a4660b",
+          "label": "Field",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "bcafdf9440",
+          "label": "notes.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "bb6113797d",
+          "label": "arif",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "3a52ce7809",
+          "label": ".",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "de2b346eee",
+          "label": "FOLLOW A THREAD",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "6c9fc99089",
+          "label": "Close menu",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "ddfe163345",
+          "label": "01",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "70f8bb9a8a",
+          "label": "Home",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "bcac9d1d8e",
+          "label": "02",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "6b21fb791a",
+          "label": "About",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "3ea6c91e24",
+          "label": "03",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "5ef4439786",
+          "label": "Blogs",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "798f861ee7",
+          "label": "04",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "53e890d5f0",
+          "label": "Projects",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "28a5c28185",
+          "label": "05",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "b37456c453",
+          "label": "Contact",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "7ac59684cc",
+          "label": "arifulislamfahim04@gmail.com",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "6b6390a441",
+          "label": "LinkedIn",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "b25a0477c3",
+          "label": "Dhaka, BD ·",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "ceeb27c057",
+          "label": "Close reading view",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "be70b75841",
+          "label": "Previous document",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "1fdb454043",
+          "label": "Next document",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "a4ae4b24a1",
+          "label": "Zoom out",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "4fc05f2763",
+          "label": "Zoom in",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "7866c7c236",
+          "label": "Close document",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "d36bcb4719",
+          "label": "Find your thread.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "1f7df2fe36",
+          "label": "Close command palette",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "f27a7d8cb2",
+          "label": "Search pages and actions",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "c92994da54",
+          "label": "Search pages and actions…",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "c8eade842c",
+          "label": "Download CV",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "9b0eaf14d3",
+          "label": "Toggle theme",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "01345289e5",
+          "label": "Email me",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "f8aae44c5e",
+          "label": "MY APPROACH",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "f113803ac0",
+          "label": "THE COMMON THREAD",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "698a041865",
+          "label": "Curiosity, made",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "d585edbaa2",
+          "label": "practical.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "385cc51745",
+          "label": "NEXT CHAPTER",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "a80804b43e",
+          "label": "A LITTLE SPACE FOR BIG IDEAS",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "f6774fe69d",
+          "label": "Let’s make something",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "a8eb6db6f0",
+          "label": "meaningful.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "a64b12d8ee",
+          "label": "WHO I AM",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "1329fd0ad1",
+          "label": "THE PERSON BEHIND THE WORK",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "26e5325f23",
+          "label": "me.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "4e6a22430e",
+          "label": "AT A GLANCE",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "b9e4ab9527",
+          "label": "LEARNING",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "593583b7da",
+          "label": "EDUCATION",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "a99e56be67",
+          "label": "Where I’m",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "9f9b15fe4d",
+          "label": "learning.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "21ab114259",
+          "label": "EXPERIENCE",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "194b4835a0",
+          "label": "LEADERSHIP & INDUSTRY EXPOSURE",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "3a628b12c1",
+          "label": "Putting learning in",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "8af1917542",
+          "label": "context.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "2fbbf64505",
+          "label": "CAPABILITIES",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "71b25448aa",
+          "label": "TECHNICAL SKILLS",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "80cc55d5d7",
+          "label": "A practical",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "bf2b84b1e8",
+          "label": "foundation.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "3ae9bc092d",
+          "label": "RECOGNITION",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "200ad80484",
+          "label": "ACADEMIC HONOURS",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "42e5140ff6",
+          "label": "Consistent effort,",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "4ce4103ab6",
+          "label": "recognized.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "81a360f604",
+          "label": "CERTIFICATES",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "661031bec1",
+          "label": "CONTINUING DEVELOPMENT",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "972e77e4cc",
+          "label": "Learning beyond the",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "a10864c1f0",
+          "label": "syllabus.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "14683d8111",
+          "label": "RECOMMENDATIONS",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "478a2ad7d9",
+          "label": "REAL PERSPECTIVES",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "3ea4ee781b",
+          "label": "Good work. Real",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "f7ec18bbc3",
+          "label": "perspectives.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "a26a6ebdc9",
+          "label": "RESUME",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "64677462f1",
+          "label": "THE FULL STORY",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "058fe80b24",
+          "label": "Take the next",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "9834541834",
+          "label": "thread.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "1742f5d553",
+          "label": "PROJECTS",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "6aea88f48b",
+          "label": "IDEAS, EXPLORATIONS & THINGS IN PROGRESS",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "9a976fc228",
+          "label": "Selected",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "28f3a9b183",
+          "label": "work.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "a308935bf6",
+          "label": "SAY HELLO",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "cf5b4626fa",
+          "label": "GOOD CONVERSATIONS START WITH AN IDEA",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "0c50e3c4a6",
+          "label": "Let’s",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "e1fb7c5376",
+          "label": "connect.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "d6fce70456",
+          "label": "LET’S TALK",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "edee6ff660",
+          "label": "Good ideas start",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "cfc31e1e8d",
+          "label": "For internships, trainee roles, academic collaboration, or a conversation about textiles and technology — get in touch.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "0cd50ae658",
+          "label": "SEND A MESSAGE",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "3fd30dbd52",
+          "label": "What’s on your mind?",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "ab42293e29",
+          "label": "Your name",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "6db5ba5e66",
+          "label": "What should I call you?",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "3fa6f5fb50",
+          "label": "Your email",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "50e2b46ef8",
+          "label": "you@example.com",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "8d183dbdce",
+          "label": "Subject",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "e4a1c09b4d",
+          "label": "What’s your idea?",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "f190c98ece",
+          "label": "Your message",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "7c156fc177",
+          "label": "Tell me a little about it…",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "c70a890d14",
+          "label": "Send message",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "ad972af035",
+          "label": "Opens your email app with a draft addressed to me. Review it there, then send.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "38582b4b94",
+          "label": "Your email draft is ready.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "aab1a88bdc",
+          "label": "Finish sending it in your email app.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "781961bc81",
+          "label": "Pause",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "5826b136ec",
+          "label": "Leave this field empty",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "b583bb33fb",
+          "label": "No updates here yet. There will be more to share soon.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "30180a850b",
+          "label": "Pause gallery motion",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "2a8a76d547",
+          "label": "More about me",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "c5bfdb102c",
+          "label": "Contact me",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "1371cbe4a7",
+          "label": "Open in Maps",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "51e0b252cd",
+          "label": "Search site (Ctrl K)",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "7587078164",
+          "label": "Theme: light. Switch to dark.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "197101e9db",
+          "label": "Open menu",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "21deb29339",
+          "label": "Sample update",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "ad086cf55b",
+          "label": "Read more",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "e83249bd3b",
+          "label": "home",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "efd197f3fc",
+          "label": "Main navigation",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "b9bfabec0b",
+          "label": "Change theme",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "378dc0b0bd",
+          "label": "Copy WhatsApp number",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "16f8bb8836",
+          "label": "Search projects…",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "1c0b1b030f",
+          "label": "THE LATEST THREADS",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "058f36b25e",
+          "label": "Mobile navigation",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "f2187c881c",
+          "label": "View projects",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "9426c85d11",
+          "label": "A LITTLE ABOUT ME",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "2bf93931c7",
+          "label": "min read",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "508fadca1c",
+          "label": "Next project",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "30c3c3680e",
+          "label": "Search projects",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "7eb6c2e508",
+          "label": "MOMENTS, COLLECTED",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "a8d4a06d59",
+          "label": "Explore the gallery",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "c2cde8edc9",
+          "label": "THE NEXT THREAD",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "3fab95cdf1",
+          "label": "View certificate",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "28fe6e9638",
+          "label": "Map of",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "00b7051632",
+          "label": "Share this page",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "d287e34776",
+          "label": "More from the notebook",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "badd385121",
+          "label": "View details",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "35a6512bae",
+          "label": "Sample image",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "419441605d",
+          "label": "Explore the map",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "a32d98c0ef",
+          "label": "Footer navigation",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "b3bd0b5a70",
+          "label": "Resume",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "4ef6e9e867",
+          "label": "Resume gallery motion",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "55fe1828e4",
+          "label": "Theme: dark. Switch to system.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "2b252b1e92",
+          "label": "Theme: system. Switch to light.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "b7c3ca0ee3",
+          "label": "Copied!",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "ab40d89c86",
+          "label": "Select the text to copy it.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "e9cc6d0e9a",
+          "label": "No results found.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "9539a81a83",
+          "label": "Please complete this field.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "d2306dd897",
+          "label": "Please enter a valid email address.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "b785d343a2",
+          "label": "Your email draft is ready. Finish sending it in your email app.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "cf765512cc",
+          "label": "Sending…",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "18d1dd0bc8",
+          "label": "Message sent. Thank you for getting in touch.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "693a733593",
+          "label": "The message could not be sent. Please try again or email me directly.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "86563d61b6",
+          "label": "Please add your form service details in Pages CMS first.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "9a9a20fae1",
+          "label": "Switch theme",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "6a72085653",
+          "label": "All",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "4e411c43d7",
+          "label": "Academic",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "be601df25e",
+          "label": "Research",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "973d438fe5",
+          "label": "Industry",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "817b79b0af",
+          "label": "Creator",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "be0068f918",
+          "label": "References available on request",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "473710d327",
+          "label": "More details",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "f2b789a1b8",
+          "label": "SELECTED THREADS",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "c1055d0a89",
+          "label": "FROM THE NOTEBOOK",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "c8a290f5ae",
+          "label": "Close photo",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "09972524c1",
+          "label": "Previous photo",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "fe66878201",
+          "label": "Next photo",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "d9c883a905",
+          "label": "Back to top",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "e1815787f2",
+          "label": "About sections",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "6d1d62bc37",
+          "label": "No entries published yet.",
+          "type": "string",
+          "description": "Change this interface label. Content entries are edited in their own sections."
+        },
+        {
+          "name": "4fa8cc860c",
+          "label": "Tools",
+          "type": "string",
+          "description": "Edit this interface label."
+        },
+        {
+          "name": "1370004da7",
+          "label": "Duration",
+          "type": "string",
+          "description": "Edit this interface label."
+        },
+        {
+          "name": "01cedd0f0e",
+          "label": "No projects match your search.",
+          "type": "string",
+          "description": "Edit this interface label."
+        }
+      ]
+    },
+    {
+      "name": "about_presentation",
+      "label": "About design, motion & recommendations",
+      "type": "file",
+      "path": "editor/about-presentation.json",
+      "format": "json",
+      "fields": [
+        {
+          "name": "facts_heading",
+          "label": "Personal facts heading",
+          "type": "string"
+        },
+        {
+          "name": "intro_wordmark",
+          "label": "Page-transition wordmark",
+          "type": "string",
+          "description": "Short signature shown between main pages. No artificial loading progress."
+        },
+        {
+          "name": "intro_animation",
+          "label": "Show signature between main pages",
+          "type": "boolean",
+          "description": "Full signature on the first page change, shorter on repeats; skipped for reduced motion."
+        },
+        {
+          "name": "cursor_follower",
+          "label": "Custom desktop cursor",
+          "type": "boolean",
+          "description": "One precise dot and a subtle ring across the site. Native pointer on touch devices, text fields, dialogs and reduced motion."
+        },
+        {
+          "name": "recommendations",
+          "label": "Recommendations",
+          "type": "object",
+          "list": true,
+          "fields": [
+            {
+              "name": "quote",
+              "label": "Recommendation text",
+              "type": "text"
+            },
+            {
+              "name": "name",
+              "label": "Person name",
+              "type": "string"
+            },
+            {
+              "name": "role",
+              "label": "Role / organisation",
+              "type": "string"
+            },
+            {
+              "name": "sample",
+              "label": "Mark clearly as a sample",
+              "type": "boolean"
+            },
+            {
+              "name": "published",
+              "label": "Show on website",
+              "type": "boolean"
+            }
+          ]
+        },
+        {
+          "name": "now_label",
+          "label": "Now panel heading",
+          "type": "string",
+          "description": "Defaults to Now."
+        },
+        {
+          "name": "specialization_label",
+          "label": "Specialization label",
+          "type": "string",
+          "description": "The value comes from the selected education entry."
+        },
+        {
+          "name": "study_label",
+          "label": "Study stage label",
+          "type": "string",
+          "description": "The status comes from the selected education entry."
+        },
+        {
+          "name": "year_label",
+          "label": "Year segment label",
+          "type": "string",
+          "description": "Defaults to Year."
+        },
+        {
+          "name": "study_level",
+          "label": "Qualification level suffix",
+          "type": "string",
+          "description": "For example undergraduate. Leave blank to hide."
+        },
+        {
+          "name": "reviewed_on",
+          "label": "Profile last reviewed date (optional)",
+          "type": "string",
+          "description": "YYYY-MM-DD. Shows Updated and the month/year only when you enter a real review date. Leave blank to hide."
+        },
+        {
+          "name": "updated_label",
+          "label": "Updated label",
+          "type": "string",
+          "description": "Text before the review month."
+        },
+        {
+          "name": "whatsapp_url",
+          "label": "WhatsApp link (optional)",
+          "type": "string",
+          "description": "Paste your https://wa.me/… link. Leave blank to hide. Your phone number is not automatically used."
+        },
+        {
+          "name": "whatsapp_text",
+          "label": "WhatsApp button text",
+          "type": "string",
+          "description": "Defaults to Message on WhatsApp."
+        },
+        {
+          "name": "contact_heading",
+          "label": "Contact group accessible label",
+          "type": "string",
+          "description": "Defaults to Contact."
+        },
+        {
+          "name": "copy_email_label",
+          "label": "Copy email button label",
+          "type": "string",
+          "description": "Defaults to Copy email."
+        },
+        {
+          "name": "copy_phone_label",
+          "label": "Copy phone button label",
+          "type": "string",
+          "description": "Defaults to Copy phone."
+        },
+        {
+          "name": "email_copied_text",
+          "label": "Email copied feedback",
+          "type": "string",
+          "description": "Defaults to Email copied."
+        },
+        {
+          "name": "phone_copied_text",
+          "label": "Phone copied feedback",
+          "type": "string",
+          "description": "Defaults to Phone copied."
+        },
+        {
+          "name": "copy_failed_text",
+          "label": "Copy failure feedback",
+          "type": "string",
+          "description": "Defaults to Copy failed. Please select and copy the text."
+        },
+        {
+          "name": "recruiter_details",
+          "label": "Optional recruiter details",
+          "type": "object",
+          "list": true,
+          "description": "Useful examples: roles of interest, earliest start, preferred work location, relocation. Only filled values appear. Do not guess; leave unknown details blank.",
+          "fields": [
+            {
+              "name": "label",
+              "label": "Label",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "value",
+              "label": "Value (leave blank to hide)",
+              "type": "string",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "award_labels",
+          "label": "Award carousel & shared photo viewer labels",
+          "type": "object",
+          "fields": [
+            {
+              "name": "view",
+              "label": "View",
+              "type": "string",
+              "default": "View"
+            },
+            {
+              "name": "open",
+              "label": "Open",
+              "type": "string",
+              "default": "Open"
+            },
+            {
+              "name": "previous_awards",
+              "label": "Previous awards",
+              "type": "string",
+              "default": "Previous awards"
+            },
+            {
+              "name": "next_awards",
+              "label": "Next awards",
+              "type": "string",
+              "default": "Next awards"
+            },
+            {
+              "name": "instruction",
+              "label": "Instruction",
+              "type": "string",
+              "default": "Each card is a separate award. Swipe, drag or use the arrow buttons to explore."
+            },
+            {
+              "name": "carousel_label",
+              "label": "Carousel label",
+              "type": "string",
+              "default": "Individual academic awards"
+            },
+            {
+              "name": "empty",
+              "label": "Empty",
+              "type": "string",
+              "default": "Awards will appear here when published."
+            },
+            {
+              "name": "view_certificate",
+              "label": "View certificate",
+              "type": "string",
+              "default": "View certificate"
+            },
+            {
+              "name": "view_photos",
+              "label": "View photos",
+              "type": "string",
+              "default": "View photos"
+            },
+            {
+              "name": "zoom_out",
+              "label": "Zoom out",
+              "type": "string",
+              "default": "Zoom out"
+            },
+            {
+              "name": "zoom_in",
+              "label": "Zoom in",
+              "type": "string",
+              "default": "Zoom in"
+            },
+            {
+              "name": "reset",
+              "label": "Reset",
+              "type": "string",
+              "default": "Reset"
+            },
+            {
+              "name": "close",
+              "label": "Close",
+              "type": "string",
+              "default": "Close viewer"
+            },
+            {
+              "name": "image_controls",
+              "label": "Image controls",
+              "type": "string",
+              "default": "Certificate image. Use the zoom buttons, pinch to zoom or drag to pan."
+            },
+            {
+              "name": "missing",
+              "label": "Missing",
+              "type": "string",
+              "default": "Certificate image not uploaded yet."
+            },
+            {
+              "name": "pdf_title",
+              "label": "Pdf title",
+              "type": "string",
+              "default": "Certificate PDF"
+            },
+            {
+              "name": "open_file",
+              "label": "Open file",
+              "type": "string",
+              "default": "Open or download certificate"
+            },
+            {
+              "name": "previous_item",
+              "label": "Previous item",
+              "type": "string",
+              "default": "Previous item"
+            },
+            {
+              "name": "next_item",
+              "label": "Next item",
+              "type": "string",
+              "default": "Next item"
+            },
+            {
+              "name": "swipe_hint",
+              "label": "Swipe hint",
+              "type": "string",
+              "default": "Swipe or use the arrow keys"
+            }
+          ]
+        },
+        {
+          "name": "learning_labels",
+          "label": "Certificates & workshops display text",
+          "type": "object",
+          "fields": [
+            {
+              "name": "certificates_heading",
+              "label": "Certificates heading",
+              "type": "string"
+            },
+            {
+              "name": "workshops_heading",
+              "label": "Workshops heading",
+              "type": "string"
+            },
+            {
+              "name": "show_all",
+              "label": "Show all button",
+              "type": "string"
+            },
+            {
+              "name": "show_less",
+              "label": "Show fewer button",
+              "type": "string"
+            },
+            {
+              "name": "view_credential",
+              "label": "View credential link",
+              "type": "string"
+            },
+            {
+              "name": "open_certificate",
+              "label": "Open certificate label",
+              "type": "string"
+            },
+            {
+              "name": "view_file",
+              "label": "View uploaded file button",
+              "type": "string"
+            },
+            {
+              "name": "issuer_website",
+              "label": "Issuer website fallback",
+              "type": "string"
+            },
+            {
+              "name": "duration",
+              "label": "Duration label",
+              "type": "string"
+            },
+            {
+              "name": "undated",
+              "label": "Missing year label",
+              "type": "string"
+            },
+            {
+              "name": "empty",
+              "label": "Empty list message",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "exposure_labels",
+          "label": "Experience & visits display text",
+          "type": "object",
+          "fields": [
+            {
+              "name": "events_heading",
+              "label": "Event grid heading",
+              "type": "string"
+            },
+            {
+              "name": "ongoing",
+              "label": "Current role badge",
+              "type": "string"
+            },
+            {
+              "name": "completed",
+              "label": "Past role badge",
+              "type": "string"
+            },
+            {
+              "name": "since",
+              "label": "Ongoing start prefix",
+              "type": "string"
+            },
+            {
+              "name": "started",
+              "label": "Completed start prefix",
+              "type": "string"
+            },
+            {
+              "name": "years",
+              "label": "Duration years label",
+              "type": "string"
+            },
+            {
+              "name": "months",
+              "label": "Duration months label",
+              "type": "string"
+            },
+            {
+              "name": "visit_years",
+              "label": "Attendance years accessibility label",
+              "type": "string"
+            },
+            {
+              "name": "more_details",
+              "label": "Extra details button",
+              "type": "string"
+            },
+            {
+              "name": "view_photos",
+              "label": "Open photos label",
+              "type": "string"
+            },
+            {
+              "name": "view_document",
+              "label": "Supporting document button",
+              "type": "string"
+            },
+            {
+              "name": "empty",
+              "label": "Empty section message",
+              "type": "string"
+            },
+            {
+              "name": "year",
+              "label": "Duration singular year label",
+              "type": "string"
+            },
+            {
+              "name": "month",
+              "label": "Duration singular month label",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "header_subtitles",
+          "label": "Section subtitles (optional)",
+          "type": "object",
+          "description": "Leave a subtitle blank to hide it. The Skills subtitle stays in About skills & languages → Intro so it has only one source.",
+          "fields": [
+            {
+              "name": "education",
+              "label": "Education",
+              "type": "string"
+            },
+            {
+              "name": "experience",
+              "label": "Experience & leadership",
+              "type": "string"
+            },
+            {
+              "name": "recognition",
+              "label": "Awards",
+              "type": "string"
+            },
+            {
+              "name": "certificates",
+              "label": "Certificates & workshops",
+              "type": "string"
+            },
+            {
+              "name": "recommendations",
+              "label": "Perspectives",
+              "type": "string"
+            },
+            {
+              "name": "resume",
+              "label": "CV",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "header_units",
+          "label": "Automatic item-count wording",
+          "type": "object",
+          "description": "Counts come from published CMS records. Change only the wording here; numbers update automatically.",
+          "fields": [
+            {
+              "name": "qualification_one",
+              "label": "Qualification one",
+              "type": "string"
+            },
+            {
+              "name": "qualification_many",
+              "label": "Qualification many",
+              "type": "string"
+            },
+            {
+              "name": "role_one",
+              "label": "Role one",
+              "type": "string"
+            },
+            {
+              "name": "role_many",
+              "label": "Role many",
+              "type": "string"
+            },
+            {
+              "name": "visit_one",
+              "label": "Visit one",
+              "type": "string"
+            },
+            {
+              "name": "visit_many",
+              "label": "Visit many",
+              "type": "string"
+            },
+            {
+              "name": "skill_one",
+              "label": "Skill one",
+              "type": "string"
+            },
+            {
+              "name": "skill_many",
+              "label": "Skill many",
+              "type": "string"
+            },
+            {
+              "name": "language_one",
+              "label": "Language one",
+              "type": "string"
+            },
+            {
+              "name": "language_many",
+              "label": "Language many",
+              "type": "string"
+            },
+            {
+              "name": "award_one",
+              "label": "Award one",
+              "type": "string"
+            },
+            {
+              "name": "award_many",
+              "label": "Award many",
+              "type": "string"
+            },
+            {
+              "name": "certificate_one",
+              "label": "Certificate one",
+              "type": "string"
+            },
+            {
+              "name": "certificate_many",
+              "label": "Certificate many",
+              "type": "string"
+            },
+            {
+              "name": "event_one",
+              "label": "Event one",
+              "type": "string"
+            },
+            {
+              "name": "event_many",
+              "label": "Event many",
+              "type": "string"
+            },
+            {
+              "name": "recommendation_one",
+              "label": "Recommendation one",
+              "type": "string"
+            },
+            {
+              "name": "recommendation_many",
+              "label": "Recommendation many",
+              "type": "string"
+            },
+            {
+              "name": "sample_one",
+              "label": "Sample one",
+              "type": "string"
+            },
+            {
+              "name": "sample_many",
+              "label": "Sample many",
+              "type": "string"
+            },
+            {
+              "name": "page_one",
+              "label": "Page one",
+              "type": "string"
+            },
+            {
+              "name": "page_many",
+              "label": "Page many",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "cv_panel",
+          "label": "CV panel",
+          "type": "object",
+          "description": "The PDF is uploaded in Profile → Résumé PDF. Page count and file size are read from the real file. Updated date comes from its latest Git change, never the site build date.",
+          "fields": [
+            {
+              "name": "pitch",
+              "label": "One-line introduction",
+              "type": "string"
+            },
+            {
+              "name": "download",
+              "label": "Download button text",
+              "type": "string"
+            },
+            {
+              "name": "view_online",
+              "label": "View online button text",
+              "type": "string"
+            },
+            {
+              "name": "preview",
+              "label": "Custom preview image (optional)",
+              "type": "image",
+              "options": {
+                "media": "uploads"
+              },
+              "description": "Leave blank to use the automatically generated first page of your PDF. Upload your own image to replace that preview."
+            },
+            {
+              "name": "preview_alt",
+              "label": "Preview image description",
+              "type": "string"
+            },
+            {
+              "name": "open_preview",
+              "label": "Preview link accessibility label",
+              "type": "string"
+            },
+            {
+              "name": "preview_hint",
+              "label": "Preview caption",
+              "type": "string"
+            },
+            {
+              "name": "updated",
+              "label": "Updated-date prefix",
+              "type": "string"
+            },
+            {
+              "name": "document",
+              "label": "Document type fallback",
+              "type": "string"
+            },
+            {
+              "name": "empty",
+              "label": "Missing CV message",
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "about_skills",
+      "label": "About skills & languages",
+      "type": "file",
+      "path": "editor/skills.json",
+      "format": "json",
+      "fields": [
+        {
+          "name": "heading",
+          "label": "Skills heading",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "intro",
+          "label": "Skills introduction",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "tools_heading",
+          "label": "Toolkit heading",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "tools_description",
+          "label": "Toolkit description",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "level_note",
+          "label": "Level explanation",
+          "type": "string",
+          "description": "The rings are decorative; do not enter percentage scores."
+        },
+        {
+          "name": "tools",
+          "label": "Software & creative tools",
+          "type": "object",
+          "list": true,
+          "fields": [
+            {
+              "name": "name",
+              "label": "Tool or skill name",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "level",
+              "label": "Experience label",
+              "type": "string",
+              "description": "For example Advanced, Proficient, Hands-on, Familiar, Basic or Learning. No score is calculated."
+            },
+            {
+              "name": "logo",
+              "label": "Logo (optional)",
+              "type": "image",
+              "options": {
+                "media": "skill_logos"
+              }
+            },
+            {
+              "name": "monogram",
+              "label": "Fallback initials",
+              "type": "string",
+              "description": "Used when no logo is uploaded."
+            },
+            {
+              "name": "usage",
+              "label": "Where I used it (optional)",
+              "type": "string",
+              "description": "Shows on hover/keyboard focus; visible as a note on touch devices."
+            },
+            {
+              "name": "published",
+              "label": "Show this tool",
+              "type": "boolean",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "groups",
+          "label": "Textile & other skill groups",
+          "type": "object",
+          "list": true,
+          "fields": [
+            {
+              "name": "title",
+              "label": "Group title",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "description",
+              "label": "Short description",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "icon",
+              "label": "Filled group icon",
+              "type": "select",
+              "options": {
+                "values": [
+                  "research",
+                  "projects",
+                  "focus",
+                  "fabric",
+                  "book"
+                ]
+              }
+            },
+            {
+              "name": "items",
+              "label": "Skills (add/remove/reorder)",
+              "type": "string",
+              "list": true
+            },
+            {
+              "name": "draft",
+              "label": "Mark these as suggested skills for review",
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "name": "draft_label",
+              "label": "Suggestion label",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "name": "published",
+              "label": "Show this group",
+              "type": "boolean",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "languages_heading",
+          "label": "Languages heading",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "languages",
+          "label": "Languages",
+          "type": "object",
+          "list": true,
+          "fields": [
+            {
+              "name": "name",
+              "label": "Language name",
+              "type": "string",
+              "description": "Also supplies the simple chips in your personal facts panel."
+            },
+            {
+              "name": "native_script",
+              "label": "Native script (optional)",
+              "type": "string",
+              "description": "For example বাংলা."
+            },
+            {
+              "name": "native_tag",
+              "label": "Script language code (optional)",
+              "type": "string",
+              "description": "For example bn for Bengali. Helps screen readers pronounce the script."
+            },
+            {
+              "name": "level",
+              "label": "Proficiency label",
+              "type": "string",
+              "description": "For example Native or Professional working. No numerical score."
+            },
+            {
+              "name": "published",
+              "label": "Show this language",
+              "type": "boolean",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "icon_credits_label",
+          "label": "Icon credits label",
+          "type": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "footer",
+      "label": "Shared footer (all pages)",
+      "type": "file",
+      "path": "editor/footer.json",
+      "format": "json",
+      "fields": [
+        {
+          "name": "heading",
+          "label": "Closing headline",
+          "type": "string"
+        },
+        {
+          "name": "heading_accent",
+          "label": "Mint-highlighted words",
+          "type": "string"
+        },
+        {
+          "name": "email_button",
+          "label": "Email button text",
+          "type": "string"
+        },
+        {
+          "name": "tagline",
+          "label": "Brand tagline",
+          "type": "string"
+        },
+        {
+          "name": "navigate_label",
+          "label": "Navigation column heading",
+          "type": "string"
+        },
+        {
+          "name": "contact_label",
+          "label": "Contact column heading",
+          "type": "string"
+        },
+        {
+          "name": "elsewhere_label",
+          "label": "Social column heading",
+          "type": "string"
+        },
+        {
+          "name": "socials_label",
+          "label": "Social group accessibility label",
+          "type": "string"
+        },
+        {
+          "name": "email_label",
+          "label": "Email copy label",
+          "type": "string"
+        },
+        {
+          "name": "phone_label",
+          "label": "Phone copy label",
+          "type": "string"
+        },
+        {
+          "name": "whatsapp_label",
+          "label": "WhatsApp link text",
+          "type": "string"
+        },
+        {
+          "name": "whatsapp_copy_label",
+          "label": "WhatsApp copy label",
+          "type": "string"
+        },
+        {
+          "name": "copy_prefix",
+          "label": "Copy button prefix",
+          "type": "string"
+        },
+        {
+          "name": "copied",
+          "label": "Copy success message",
+          "type": "string"
+        },
+        {
+          "name": "copy_failed",
+          "label": "Copy failure message",
+          "type": "string"
+        },
+        {
+          "name": "show_wordmark",
+          "label": "Show oversized decorative wordmark",
+          "type": "boolean",
+          "default": false,
+          "description": "Optional low-contrast decoration at the bottom. Leave off for a quieter footer."
+        },
+        {
+          "name": "socials",
+          "label": "Social icon buttons",
+          "type": "object",
+          "list": true,
+          "description": "Add, remove or reorder icon buttons. Profile sources use existing Profile values. For YouTube, X/Twitter or another site, choose Custom URL and paste your real link. Blank links are hidden; no placeholder accounts are published.",
+          "fields": [
+            {
+              "name": "label",
+              "label": "Profile name (tooltip & accessibility)",
+              "type": "string"
+            },
+            {
+              "name": "source",
+              "label": "Link source",
+              "type": "select",
+              "options": {
+                "values": [
+                  "Email",
+                  "LinkedIn",
+                  "Facebook",
+                  "WhatsApp",
+                  "Custom URL"
+                ]
+              }
+            },
+            {
+              "name": "url",
+              "label": "Custom profile URL",
+              "type": "string"
+            },
+            {
+              "name": "icon",
+              "label": "SVG Repo icon",
+              "type": "select",
+              "options": {
+                "values": [
+                  "home",
+                  "about",
+                  "blogs",
+                  "projects",
+                  "contact",
+                  "sun",
+                  "moon",
+                  "menu",
+                  "close",
+                  "arrow",
+                  "up",
+                  "down",
+                  "left",
+                  "right",
+                  "download",
+                  "linkedin",
+                  "facebook",
+                  "youtube",
+                  "x",
+                  "phone",
+                  "location",
+                  "award",
+                  "users",
+                  "book",
+                  "research",
+                  "copy",
+                  "check",
+                  "tag",
+                  "message",
+                  "quote",
+                  "fabric",
+                  "focus",
+                  "globe",
+                  "language",
+                  "search",
+                  "certificate",
+                  "zoom",
+                  "minus",
+                  "clock",
+                  "gallery",
+                  "whatsapp"
+                ]
+              }
+            },
+            {
+              "name": "published",
+              "label": "Show icon",
+              "type": "boolean",
+              "default": true
+            }
+          ]
         }
       ]
     }

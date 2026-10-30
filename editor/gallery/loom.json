@@ -1,15 +1,15 @@
 {
-  "title": "Following the thread",
-  "image": "assets/loom-spools.jpg",
-  "alt": "Spools on a weaving machine. A sample image for future industrial visits and projects.",
-  "caption": "Spools on a weaving machine. A sample image for future industrial visits and projects.",
-  "category": "Making",
+  "title": "Room to make",
+  "image": "assets/placeholders/pixabay-workspace.webp",
+  "alt": "A man using a laptop while sitting on a sofa. Stock placeholder, not a personal photograph.",
+  "caption": "Placeholder photograph — replace this with your own moment.",
+  "category": "Learning",
   "shape": "Landscape",
-  "body": "<p>This sample demonstrates the photo story layout. Replace it with your own photo, caption, and memory in Pages CMS.</p>",
-  "credit": "Daniel Schild / Unsplash",
-  "source_url": "https://unsplash.com/photos/spools-of-thread-on-a-weaving-machine-u5-bbIrbXNM",
+  "body": "<p>This stock photograph demonstrates the gallery layout. It is not a record of my university life or work. Replace it in Pages CMS.</p>",
+  "credit": "StartupStockPhotos",
+  "source_url": "https://pixabay.com/photos/entrepreneur-start-up-man-planning-593371/",
   "featured": true,
   "placeholder": true,
   "published": true,
-  "order": 4
+  "order": 3
 }

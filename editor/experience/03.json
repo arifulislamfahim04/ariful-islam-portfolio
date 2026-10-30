@@ -1,10 +1,17 @@
 {
   "title": "Textech International Exhibition",
-  "date": "2022 – 2025 · MULTIPLE VISITS",
-  "institution": "ICCB · Dhaka",
+  "date": "2022–2025 · Multiple visits",
+  "institution": "Textech International Exhibition",
   "body": "<p>Explored developments in textile machinery, knit manufacturing technology, and ready-made garment production systems across several exhibition visits.</p>",
   "badge": "",
   "file": "",
   "published": true,
-  "order": 3
+  "order": 4,
+  "website": "https://www.textech-bangladesh.com/",
+  "timeline_state": "completed",
+  "record_type": "event",
+  "event_type": "Exhibition",
+  "venue": "ICCB",
+  "city": "Dhaka, Bangladesh",
+  "years": []
 }

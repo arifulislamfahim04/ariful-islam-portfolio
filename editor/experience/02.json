@@ -1,10 +1,17 @@
 {
   "title": "GMS Composite Knitting Ind. Ltd.",
-  "date": "INDUSTRIAL VISIT",
-  "institution": "Gazipur, Bangladesh",
+  "date": "Around mid-2025 · One visit",
+  "institution": "GMS Composite Knitting Ind. Ltd.",
   "body": "<p>Observed knitting and dyeing operations, including single jersey, double jersey, and Jacquard machines — a closer look at how processes connect within a composite mill.</p>",
   "badge": "",
   "file": "",
   "published": true,
-  "order": 2
+  "order": 3,
+  "website": "https://www.gmsbd.com/",
+  "timeline_state": "completed",
+  "record_type": "event",
+  "event_type": "Industry visit",
+  "venue": "Composite knitting mill",
+  "city": "Gazipur, Bangladesh",
+  "years": []
 }

@@ -1,0 +1,55 @@
+{
+  "heading": "Let’s build something",
+  "heading_accent": "together.",
+  "email_button": "Email me",
+  "tagline": "Curiosity, woven into practice.",
+  "navigate_label": "Navigate",
+  "contact_label": "Contact",
+  "elsewhere_label": "Elsewhere",
+  "socials_label": "Social profiles",
+  "email_label": "email",
+  "phone_label": "phone number",
+  "whatsapp_label": "Message on WhatsApp",
+  "whatsapp_copy_label": "WhatsApp link",
+  "copy_prefix": "Copy",
+  "copied": "Copied",
+  "copy_failed": "Could not copy. Please select and copy the contact text.",
+  "show_wordmark": false,
+  "socials": [
+    {
+      "label": "Email",
+      "source": "Email",
+      "icon": "contact",
+      "url": "",
+      "published": true
+    },
+    {
+      "label": "LinkedIn",
+      "source": "LinkedIn",
+      "icon": "linkedin",
+      "url": "",
+      "published": true
+    },
+    {
+      "label": "Facebook",
+      "source": "Facebook",
+      "icon": "facebook",
+      "url": "",
+      "published": true
+    },
+    {
+      "label": "YouTube",
+      "source": "Custom URL",
+      "icon": "youtube",
+      "url": "",
+      "published": true
+    },
+    {
+      "label": "X / Twitter",
+      "source": "Custom URL",
+      "icon": "x",
+      "url": "",
+      "published": true
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Notes in progress",
+  "image": "assets/placeholders/pixabay-writing.webp",
+  "alt": "A woman typing on a laptop beside a cup of coffee. Stock placeholder, not a personal photograph.",
+  "caption": "Placeholder photograph — replace this with your own moment.",
+  "category": "Learning",
+  "shape": "Landscape",
+  "body": "<p>This stock photograph demonstrates the gallery layout. It is not a record of my university life or work. Replace it in Pages CMS.</p>",
+  "credit": "Pexels via Pixabay",
+  "source_url": "https://pixabay.com/photos/woman-laptop-desk-workspace-1851464/",
+  "featured": true,
+  "placeholder": true,
+  "published": true,
+  "order": 5
+}

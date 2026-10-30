@@ -15,12 +15,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: python -m pip install -r requirements.txt
+      - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
       - run: python scripts/build_editor.py
       - run: python scripts/check_site.py
+      - run: python scripts/test_launch.py
+      - run: python scripts/test_about_headers_cv.py
+      - run: python scripts/test_shared_footer.py
+      - run: python scripts/test_shared_dock.py
+      - run: node scripts/test_theme.cjs
+      - run: node scripts/test_cursor.cjs
+      - run: node scripts/test_page_navigation.cjs
       - run: python scripts/test_editor.py
       - run: python scripts/test_optional_fields.py
       - run: python scripts/test_home_design.py

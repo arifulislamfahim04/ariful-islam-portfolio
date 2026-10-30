@@ -1,0 +1,15 @@
+{
+  "title": "A moment to focus",
+  "image": "assets/placeholders/pixabay-laptop-640.webp",
+  "alt": "A man working on a laptop on a sofa. Stock placeholder, not a personal photograph.",
+  "caption": "Placeholder photograph — replace this with your own moment.",
+  "category": "Learning",
+  "shape": "Landscape",
+  "body": "<p>This stock photograph demonstrates the gallery layout. It is not a record of my university life or work. Replace it in Pages CMS.</p>",
+  "credit": "StartupStockPhotos",
+  "source_url": "https://pixabay.com/photos/man-laptop-businessman-entrepreneur-593372/",
+  "featured": true,
+  "placeholder": true,
+  "published": true,
+  "order": 6
+}

@@ -1,10 +1,24 @@
 {
   "title": "Class Representative",
-  "date": "2022 – PRESENT",
-  "institution": "Green University of Bangladesh · Dhaka",
-  "body": "<p>I coordinate communication between faculty and a cohort of 35+ students, help communicate schedules and class concerns, and support teamwork across academic activities.</p>",
+  "date": "Started 2022",
+  "institution": "Green University of Bangladesh",
+  "body": "",
   "badge": "",
   "file": "",
   "published": true,
-  "order": 1
+  "order": 2,
+  "website": "https://www.green.edu.bd/",
+  "timeline_state": "completed",
+  "record_type": "role",
+  "start_date": "2022",
+  "end_date": "",
+  "currently_working": false,
+  "responsibilities": "<ul><li>Coordinated communication between faculty and a cohort of 40+ students.</li><li>Communicated class schedules and student concerns.</li><li>Supported teamwork across academic activities.</li></ul>",
+  "impact": [
+    {
+      "value": "40+",
+      "label": "Students represented"
+    }
+  ],
+  "location": "Dhaka, Bangladesh"
 }

@@ -1,0 +1,207 @@
+{
+  "home": {
+    "file": "house-simple-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364598/house-simple-fill",
+    "license": "CC0-1.0"
+  },
+  "about": {
+    "file": "user-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364967/user-fill",
+    "license": "CC0-1.0"
+  },
+  "blogs": {
+    "file": "file-text-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364491/file-text-fill",
+    "license": "CC0-1.0"
+  },
+  "projects": {
+    "file": "briefcase-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364283/briefcase-fill",
+    "license": "CC0-1.0"
+  },
+  "contact": {
+    "file": "envelope-simple-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364467/envelope-simple-fill",
+    "license": "CC0-1.0"
+  },
+  "sun": {
+    "file": "sun-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364890/sun-fill",
+    "license": "CC0-1.0"
+  },
+  "moon": {
+    "file": "moon-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364666/moon-fill",
+    "license": "CC0-1.0"
+  },
+  "menu": {
+    "file": "squares-four-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364875/squares-four-fill",
+    "license": "CC0-1.0"
+  },
+  "close": {
+    "file": "x-fill.svg",
+    "source": "https://www.svgrepo.com/svg/365001/x-fill",
+    "license": "CC0-1.0"
+  },
+  "arrow": {
+    "file": "arrow-right-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364191/arrow-right-fill",
+    "license": "CC0-1.0"
+  },
+  "up": {
+    "file": "arrow-up-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364220/arrow-up-fill",
+    "license": "CC0-1.0"
+  },
+  "down": {
+    "file": "arrow-down-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364157/arrow-down-fill",
+    "license": "CC0-1.0"
+  },
+  "left": {
+    "file": "caret-left-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364316/caret-left-fill",
+    "license": "CC0-1.0"
+  },
+  "right": {
+    "file": "caret-right-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364318/caret-right-fill",
+    "license": "CC0-1.0"
+  },
+  "download": {
+    "file": "file-arrow-down-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364482/file-arrow-down-fill",
+    "license": "CC0-1.0"
+  },
+  "linkedin": {
+    "file": "linkedin-logo-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364622/linkedin-logo-fill",
+    "license": "CC0-1.0"
+  },
+  "facebook": {
+    "file": "facebook-logo-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364475/facebook-logo-fill",
+    "license": "CC0-1.0"
+  },
+  "youtube": {
+    "file": "youtube-logo-fill.svg",
+    "source": "https://www.svgrepo.com/svg/365002/youtube-logo-fill",
+    "license": "CC0-1.0"
+  },
+  "x": {
+    "file": "twitter-logo-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364957/twitter-logo-fill",
+    "license": "CC0-1.0"
+  },
+  "phone": {
+    "file": "phone-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364746/phone-fill",
+    "license": "CC0-1.0"
+  },
+  "location": {
+    "file": "map-pin-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364647/map-pin-fill",
+    "license": "CC0-1.0"
+  },
+  "award": {
+    "file": "medal-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364652/medal-fill",
+    "license": "CC0-1.0"
+  },
+  "users": {
+    "file": "users-three-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364975/users-three-fill",
+    "license": "CC0-1.0"
+  },
+  "book": {
+    "file": "book-open-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364273/book-open-fill",
+    "license": "CC0-1.0"
+  },
+  "research": {
+    "file": "flask-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364507/flask-fill",
+    "license": "CC0-1.0"
+  },
+  "copy": {
+    "file": "copy-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364401/copy-fill",
+    "license": "CC0-1.0"
+  },
+  "check": {
+    "file": "check-circle-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364354/check-circle-fill",
+    "license": "CC0-1.0"
+  },
+  "tag": {
+    "file": "tag-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364897/tag-fill",
+    "license": "CC0-1.0"
+  },
+  "message": {
+    "file": "chat-circle-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364343/chat-circle-fill",
+    "license": "CC0-1.0"
+  },
+  "quote": {
+    "file": "quotes-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364785/quotes-fill",
+    "license": "CC0-1.0"
+  },
+  "fabric": {
+    "file": "stack-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364877/stack-fill",
+    "license": "CC0-1.0"
+  },
+  "focus": {
+    "file": "target-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364898/target-fill",
+    "license": "CC0-1.0"
+  },
+  "globe": {
+    "file": "globe-hemisphere-west-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364555/globe-hemisphere-west-fill",
+    "license": "CC0-1.0"
+  },
+  "language": {
+    "file": "translate-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364942/translate-fill",
+    "license": "CC0-1.0"
+  },
+  "search": {
+    "file": "magnifying-glass-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364645/magnifying-glass-fill",
+    "license": "CC0-1.0"
+  },
+  "certificate": {
+    "file": "file-text-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364491/file-text-fill",
+    "license": "CC0-1.0"
+  },
+  "zoom": {
+    "file": "magnifying-glass-plus-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364649/magnifying-glass-plus-fill",
+    "license": "CC0-1.0"
+  },
+  "minus": {
+    "file": "magnifying-glass-minus-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364646/magnifying-glass-minus-fill",
+    "license": "CC0-1.0"
+  },
+  "clock": {
+    "file": "clock-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364375/clock-fill",
+    "license": "CC0-1.0"
+  },
+  "gallery": {
+    "file": "camera-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364302/camera-fill",
+    "license": "CC0-1.0"
+  },
+  "whatsapp": {
+    "file": "whatsapp-logo-fill.svg",
+    "source": "https://www.svgrepo.com/svg/364988/whatsapp-logo-fill",
+    "license": "CC0-1.0"
+  }
+}

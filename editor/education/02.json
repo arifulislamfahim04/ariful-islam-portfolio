@@ -2,9 +2,31 @@
   "title": "Higher Secondary Certificate (HSC)",
   "date": "2019 – 2021",
   "institution": "Dr. Mahbubur Rahman Mollah College · Dhaka",
-  "body": "<p>Science background · GPA 4.92 / 5.00.</p>",
+  "body": "",
   "badge": "GPA 4.92/5.00",
   "file": "",
   "published": true,
-  "order": 2
+  "order": 2,
+  "website": "https://dmrc.edu.bd/",
+  "grade": "4.92",
+  "grade_scale": "5.00",
+  "grade_label": "GPA",
+  "subtitle": "Science group",
+  "featured": true,
+  "status": "Completed",
+  "currently_studying": false,
+  "expected_completion": false,
+  "extra_fields": [
+    {
+      "label": "Group",
+      "value": "Science"
+    }
+  ],
+  "show_progress": true,
+  "start_date": "2019",
+  "end_date": "2021",
+  "programme_duration": "2-year programme",
+  "status_pulse": false,
+  "timeline_label": "",
+  "timeline_state": "completed"
 }

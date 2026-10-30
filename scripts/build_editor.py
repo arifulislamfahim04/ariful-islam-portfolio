@@ -4,6 +4,26 @@ from html import escape
 from urllib.parse import urlsplit
 import json, shutil, re, hashlib
 from home_design import enhance
+from home_polish import polish
+from editorial import redesign
+from hero_refresh import refresh_hero
+from about_refresh import refresh_about
+from about_finish import finish_about
+from education_v2 import education_v2
+from about_timeline import refine_timeline
+from about_facts import refine_facts
+from about_skills import refine_skills
+from about_awards import refine_awards
+from about_learning import refine_learning
+from about_exposure import refine_exposure
+from about_headers_cv import refine_headers_cv
+from shared_footer import refine_footer
+from shared_theme import refine_theme
+from page_navigation import refine_navigation
+from shared_dock import refine_dock
+from shared_cursor import refine_cursor
+from launch_polish import refine_launch
+from navigation import read_navigation
 from lxml import html
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'docs'
@@ -209,7 +229,7 @@ def build():
   for v in entries(folder):
    extra=story_body(dict(v,body=''),folder)
    expanded='<details class="entry-extra"><summary>More details</summary><div class="entry-extra-body">'+extra+'</div></details>' if extra else ''
-   cards+=f'<article class="timeline-card glass" data-reveal><span class="timeline-node"></span>{optional_tag("span","care-chip",date_text(v,folder))}<h3>{esc(v["title"])}</h3>{optional_tag("p","institution",v.get("institution"))}{visible_rich(v.get("body"))}{optional_tag("span","fact-chip",grade_text(v))}{expanded}</article>'
+   cards+=f'<article class="timeline-card glass" data-entry-id="{esc(v["_id"])}" data-reveal><span class="timeline-node"></span>{optional_tag("span","care-chip",date_text(v,folder))}<h3>{esc(v["title"])}</h3>{optional_tag("p","institution",v.get("institution"))}{visible_rich(v.get("body"))}{optional_tag("span","fact-chip",grade_text(v))}{expanded}</article>'
   return '<div class="stitched-timeline">'+cards+'</div>' if cards else '<p>No entries published yet.</p>'
  for folder in ('education','experience'):section(a,folder,timeline(folder))
  skills='<div class="skill-grid">'
@@ -224,7 +244,7 @@ def build():
    if content:
     documents.append(dict(id=v['_id'],kind='Academic recognition' if folder=='achievements' else 'Certificate record',title=v['title'],body=content))
     button=f'<button class="text-link" data-document="{esc(v["_id"])}">View details / certificate →</button>'
-   cards+=f'<article class="certificate-card glass" data-reveal>{optional_tag("span","care-chip",date_text(v,folder))}<h3>{esc(v["title"])}</h3>{optional_tag("p","institution",v.get("institution"))}{visible_rich(v.get("body"))}{button}</article>'
+   cards+=f'<article class="certificate-card glass" data-entry-id="{esc(v["_id"])}" data-reveal>{optional_tag("span","care-chip",date_text(v,folder))}<h3>{esc(v["title"])}</h3>{optional_tag("p","institution",v.get("institution"))}{visible_rich(v.get("body"))}{button}</article>'
   return '<div class="certificate-grid">'+cards+'</div>' if cards else '<p>No entries published yet.</p>'
  section(a,'recognition',certificates('achievements'))
  transcript_button='<div class="transcript-action"><button class="button secondary" data-document="transcript">View Transcript</button></div>' if visible_rich(about.get('transcript_body')) or url(about.get('transcript')) else ''
@@ -248,33 +268,61 @@ def build():
   markup=''.join(f'<button class="filter {"active" if i==0 else ""}" {filterattr}="{esc(c)}" aria-pressed="{str(i==0).lower()}">{esc("All" if i==0 else c)}</button>' for i,c in enumerate(['all']+sorted(set(cats))))
   set_html(one(pages[page],'//div[contains(@class,"filter-bar")]'),markup)
  moments=enhance(pages,profile,entries('gallery'),read('homepage.json'),esc=esc,url=url,rich=rich,image=image,set_html=set_html,one=one,select=select,story_body=story_body,root=ROOT)
+ polish(pages,profile,read('homepage.json'),entries('updates'),root=ROOT,esc=esc,url=url,rich=rich,one=one,select=select,set_html=set_html)
+ editorial_site,editorial_ui=redesign(pages,profile,about,read('homepage.json'),root=ROOT,esc=esc,url=url,rich=visible_rich,one=one,select=select,set_html=set_html,entries=entries,story_body=story_body,date_text=date_text)
+ refresh_hero(pages['index'],profile,read('homepage.json'),esc=esc,url=url,rich=visible_rich,set_html=set_html,navigation=read_navigation(ROOT))
+ refresh_about(pages['about'],pages['index'],read('homepage.json'),root=ROOT,esc=esc,url=url,set_html=set_html)
+ finish_about(pages,root=ROOT,esc=esc,url=url,set_html=set_html)
+ education_v2(pages['about'],root=ROOT,esc=esc,url=url,set_html=set_html,rich=rich)
+ refine_timeline(pages['about'],root=ROOT,esc=esc)
+ refine_facts(pages['about'],root=ROOT,esc=esc,url=url,set_html=set_html)
+ refine_skills(pages['about'],root=ROOT,esc=esc,url=url,set_html=set_html)
+ refine_awards(pages['about'],root=ROOT,esc=esc,url=url,rich=visible_rich,set_html=set_html,story_body=story_body)
+ refine_learning(pages['about'],root=ROOT,esc=esc,url=url,rich=visible_rich,set_html=set_html,story_body=story_body)
+ refine_exposure(pages['about'],root=ROOT,esc=esc,url=url,rich=visible_rich,set_html=set_html,story_body=story_body)
+ refine_headers_cv(pages['about'],root=ROOT,esc=esc,url=url,set_html=set_html)
+ refine_footer(pages,root=ROOT,esc=esc,url=url,set_html=set_html)
+ refine_dock(pages,root=ROOT,esc=esc,url=url,set_html=set_html)
+ refine_theme(pages,root=ROOT)
+ navigation_css=refine_navigation(pages,root=ROOT)
+ refine_cursor(pages,root=ROOT)
+ refine_launch(pages,profile=profile,root=ROOT,esc=esc,set_html=set_html)
  # Remove previously generated post pages, so deleted/unpublished entries disappear.
  for pattern in ('posts-*.html','projects-*.html'):
   for p in OUT.glob(pattern):p.unlink()
  for name,d in pages.items():
   # All pages use the same editable contact and resume values.
-  for e in select(d,'//script[@src="content.js" or @src="site.js"]'):e.set('src',e.get('src')+'?v='+version)
+  for e in select(d,'//script[@src="content.js" or @src="site.js" or @src="home-core.js" or @src="home-polish.js"]'):e.set('src',e.get('src')+'?v='+version)
+  for e in select(d,'//link[@href="home-base.css" or @href="home-polish.css"]'):e.set('href',e.get('href')+'?v='+version)
   for e in select(d,'//a[@href]'):
    old=e.get('href')
    if old=='assets/ariful-islam-fahim-cv.pdf':e.set('href',url(profile['resume']));e.attrib.pop('download',None)
    elif old.startswith('mailto:arifulislamfahim04@gmail.com'):e.set('href',old.replace('arifulislamfahim04@gmail.com',profile['email']))
    elif old=='tel:+8801968718018':e.set('href','tel:'+profile['phone'])
    elif 'linkedin.com/in/ariful-islam-fahim' in old:e.set('href',url(profile['linkedin']))
+  if name=='index' and not urlsplit(url(profile.get('resume'))).scheme:
+   for e in select(d,'//div[@class="hero-actions"]/a[1]'):e.set('download','')
   for e in select(d,'//body//*'):
    for key in ('text','tail'):
     value=getattr(e,key)
     if value:
      value=value.replace('Ariful Islam Fahim',profile['name']).replace('arifulislamfahim04@gmail.com',profile['email']).replace('+880 1968-718018',profile['phone'])
      setattr(e,key,value)
-  one(d,'//body').append(html.Element('script',src='home.js?v='+version))
+  # The editorial runtime retains gallery behavior without the legacy rail and card effects.
   for e in select(d,'//head'):
 
-   e.append(html.Element('link',rel='stylesheet',href='editor.css?v='+version))
-   e.append(html.Element('link',rel='stylesheet',href='home.css?v='+version))
+   pass
   for script in select(d,'//script[@src]'):script.set('defer','')
   (OUT/(name+'.html')).write_text(html.tostring(d,encoding='unicode',doctype='<!doctype html>'))
+ if not about.get('transcript_public',False):documents=[v for v in documents if v['id']!='transcript']
+ for folder in ('education','experience','workshops'):
+  for v in entries(folder):
+   if story_body(v,folder):documents.append(dict(id=v['_id'],kind='Supporting document',title=v['title'],body=story_body(v,folder)))
  payload='window.PORTFOLIO_DETAILS='+json.dumps(details,ensure_ascii=False)+';\nwindow.PORTFOLIO_DOCUMENTS='+json.dumps(documents,ensure_ascii=False)+';\nwindow.PORTFOLIO_PROFILE='+json.dumps(profile,ensure_ascii=False)+';'
  (OUT/'content.js').write_text(payload+'\nwindow.PORTFOLIO_MOMENTS='+json.dumps([dict(m,body=visible_rich(m.get('body')),source_url=url(m.get('source_url'))) for m in moments],ensure_ascii=False)+';')
+ for extension in ('css','js'):
+  shutil.copyfile(ROOT/('scripts/home_polish.'+extension),OUT/('home-polish.'+extension))
+ shutil.copyfile(ROOT/'scripts/portfolio-foundation.css',OUT/'portfolio-foundation.css')
  shutil.copyfile(ROOT/'scripts/home.css',OUT/'home.css')
  shutil.copyfile(ROOT/'scripts/home.js',OUT/'home.js')
  js=(ROOT/'dist/site.js').read_text().replace("const words=['CREATOR’S CURIOSITY','ENGINEER’S MIND','STORYTELLER’S EYE','LOVE FOR AI'];","const words=window.PORTFOLIO_PROFILE.rotating_words?.length ? window.PORTFOLIO_PROFILE.rotating_words : ['CURIOUS MIND'];")
@@ -283,7 +331,40 @@ def build():
  js=js.replace("if(e.button!==0||","if(a.hasAttribute('data-project')||e.button!==0||")
  js=js.replace("hour:'2-digit',minute:'2-digit'","hour:'numeric',minute:'2-digit',hour12:true").replace("el.textContent=time+' BD'","el.textContent=time.toUpperCase()+' BD'")
  (OUT/'site.js').write_text(js)
+ # Homepage reuses the core behavior with its old canvas/cursor loop removed.
+ home_js=re.sub(r'// Only thin, transparent cursor layers.*?(?=let scrollQueued=false;)', 'function drawWeave(){}\n',js,flags=re.S)
+ home_js=home_js.replace('if(reduced.matches||!document.startViewTransition)', 'if(body.hasAttribute("data-home-polish")||reduced.matches||!document.startViewTransition)')
+ (OUT/'home-core.js').write_text(home_js)
+ base_css=(ROOT/'dist/site.css').read_text()
+ base_css=re.sub(r"@import url\([^;]+;",'',base_css,count=1)
+ (OUT/'home-base.css').write_text(base_css)
+
  (OUT/'editor.css').write_text('''.portrait-upload{object-fit:cover!important;filter:none!important}.story-page{max-width:900px}.story-page h1{font-size:clamp(2rem,5vw,4rem);line-height:1.15;margin:2rem 0}.story-body{font-size:1.1rem;line-height:1.85}.story-cover{width:100%;max-height:500px;object-fit:cover;border-radius:16px}.story-body img,#reader-body img,#document-body img{max-width:100%;height:auto;border-radius:12px}.story-body figure,#reader-body figure{margin:1.5rem 0}.story-body figcaption,#reader-body figcaption{font-size:.9rem;opacity:.75}.story-video,video{width:100%;aspect-ratio:16/9;border:0}.certificate-pdf{width:100%;height:65vh;border:0}.story-body table,#reader-body table{width:100%;border-collapse:collapse}.story-body td,.story-body th,#reader-body td,#reader-body th{padding:.5rem;border:1px solid #8886}.info-card dd{overflow-wrap:anywhere}.certificate-card .text-link{margin-top:1rem}.certificate-card img{max-width:100%}.entry-facts{margin:1rem 0}.entry-facts>div{display:grid;grid-template-columns:minmax(7rem,1fr) minmax(0,2fr);gap:.6rem;padding:.55rem 0;border-bottom:1px solid #8883}.entry-facts dt{font-size:.85rem;opacity:.75}.entry-facts dd{margin:0;overflow-wrap:anywhere}.entry-extra{margin-top:1.25rem;border-top:1px solid #8883;padding-top:1rem}.entry-extra summary{cursor:pointer;font-weight:600}.entry-extra-body{padding-top:1rem}.entry-extra img{max-width:100%;height:auto}.entry-detail-section{margin:1.4rem 0}.entry-detail-section h3{font-size:1.05rem!important;margin-bottom:.6rem}.entry-extra-body p,.entry-facts dd{overflow-wrap:anywhere}.entry-extra .button{white-space:normal}.profile-socials{flex-wrap:wrap}@media(max-width:540px){.entry-facts>div{grid-template-columns:1fr;gap:.2rem}.entry-extra .certificate-pdf{height:50vh}}''')
+ for extension in ('css','js'):
+  shutil.copyfile(ROOT/('scripts/editorial.'+extension),OUT/('editorial.'+extension))
+  shutil.copyfile(ROOT/('scripts/hero-refresh.'+extension),OUT/('hero-refresh.'+extension))
+  shutil.copyfile(ROOT/('scripts/about-refresh.'+extension),OUT/('about-refresh.'+extension))
+  shutil.copyfile(ROOT/('scripts/shared-motion.'+extension),OUT/('shared-motion.'+extension))
+  shutil.copyfile(ROOT/('scripts/about-awards.'+extension),OUT/('about-awards.'+extension))
+  shutil.copyfile(ROOT/('scripts/about-learning.'+extension),OUT/('about-learning.'+extension))
+  shutil.copyfile(ROOT/('scripts/about-exposure.'+extension),OUT/('about-exposure.'+extension))
+  shutil.copyfile(ROOT/('scripts/about-headers-cv.'+extension),OUT/('about-headers-cv.'+extension))
+  shutil.copyfile(ROOT/('scripts/shared-footer.'+extension),OUT/('shared-footer.'+extension))
+  shutil.copyfile(ROOT/('scripts/theme.'+extension),OUT/('theme.'+extension))
+  shutil.copyfile(ROOT/('scripts/shared-dock.'+extension),OUT/('shared-dock.'+extension))
+  shutil.copyfile(ROOT/('scripts/shared-cursor.'+extension),OUT/('shared-cursor.'+extension))
+  if extension=='css':(OUT/'page-navigation.css').write_text(navigation_css)
+ gallery_source=(ROOT/'scripts/home.js').read_text().split('// Gallery filter and photo-story lightbox work independently of the carousel.')[1]
+ (OUT/'gallery-runtime.js').write_text("(()=>{'use strict';const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];\n"+gallery_source)
+ (OUT/'content.js').write_text((OUT/'content.js').read_text()+'\nwindow.PORTFOLIO_SITE='+json.dumps(editorial_site,ensure_ascii=False)+';\nwindow.PORTFOLIO_UI='+json.dumps(editorial_ui,ensure_ascii=False)+';\nwindow.PORTFOLIO_LABELS='+json.dumps({v:editorial_ui.get(k,v) for k,v in json.loads((ROOT/'scripts/interface-defaults.json').read_text()).items()},ensure_ascii=False)+';')
+ for p in OUT.glob('*.html'):
+  d=html.parse(str(p))
+  for e in d.xpath('//link[@href="portfolio-foundation.css" or @href="editorial.css" or @href="hero-refresh.css" or @href="about-refresh.css" or @href="shared-motion.css" or @href="about-awards.css" or @href="about-learning.css" or @href="about-exposure.css" or @href="about-headers-cv.css" or @href="shared-footer.css" or @href="shared-cursor.css" or @href="shared-dock.css" or @href="theme.css" or @href="page-navigation.css"]|//script[@src="editorial.js" or @src="gallery-runtime.js" or @src="hero-refresh.js" or @src="about-refresh.js" or @src="shared-motion.js" or @src="about-awards.js" or @src="about-learning.js" or @src="about-exposure.js" or @src="about-headers-cv.js" or @src="shared-footer.js" or @src="shared-cursor.js" or @src="shared-dock.js" or @src="theme.js"]'):e.set('href' if e.tag=='link' else 'src',e.get('href' if e.tag=='link' else 'src')+'?v='+version)
+  p.write_text(html.tostring(d,encoding='unicode',doctype='<!doctype html>'))
+ from xml.sax.saxutils import escape as xml_escape
+ base=editorial_site['site_url'].rstrip('/')+'/'
+ (OUT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+xml_escape(base+p.name)+'</loc></url>' for p in sorted(OUT.glob('*.html')) if not p.name.startswith('qa-') and p.stem!='404')+'</urlset>')
+ (OUT/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+base+'sitemap.xml\n')
  (OUT/'.nojekyll').touch()
  print(f'Built {len(pages)} pages, {len(details)} stories, {len(documents)} documents')
 if __name__=='__main__':build()

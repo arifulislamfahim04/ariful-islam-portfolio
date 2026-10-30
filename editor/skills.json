@@ -1,0 +1,126 @@
+{
+  "heading": "Tools I work with. Skills I’m building.",
+  "intro": "Software, creative tools and a practical textile foundation.",
+  "level_note": "Levels describe my experience; the rings are decorative, not numerical scores.",
+  "groups": [
+    {
+      "title": "Textile & quality",
+      "description": "Fabric identification, with a short list of quality skills to review.",
+      "icon": "research",
+      "draft": true,
+      "draft_label": "Working list · review suggested skills",
+      "items": [
+        "Fabric identification",
+        "Defect identification",
+        "AQL defect classification"
+      ],
+      "published": true
+    },
+    {
+      "title": "Apparel & production",
+      "description": "A foundation in apparel manufacturing and quality control.",
+      "icon": "projects",
+      "draft": true,
+      "draft_label": "Working list · review suggested skills",
+      "items": [
+        "Apparel manufacturing fundamentals",
+        "Quality control basics"
+      ],
+      "published": true
+    }
+  ],
+  "tools_heading": "Software & creative toolkit",
+  "tools_description": "Presentations, documents, design and everyday digital work.",
+  "tools": [
+    {
+      "name": "PowerPoint",
+      "level": "Advanced",
+      "logo": "assets/skill-logos/powerpoint.svg",
+      "monogram": "P",
+      "usage": "",
+      "published": true
+    },
+    {
+      "name": "Word",
+      "level": "Proficient",
+      "logo": "assets/skill-logos/word.svg",
+      "monogram": "W",
+      "usage": "",
+      "published": true
+    },
+    {
+      "name": "Canva",
+      "level": "Proficient",
+      "logo": "assets/skill-logos/canva.svg",
+      "monogram": "C",
+      "usage": "",
+      "published": true
+    },
+    {
+      "name": "Excel",
+      "level": "Basic",
+      "logo": "assets/skill-logos/excel.svg",
+      "monogram": "X",
+      "usage": "",
+      "published": true
+    },
+    {
+      "name": "AutoCAD 2D",
+      "level": "Hands-on",
+      "logo": "assets/skill-logos/autocad.svg",
+      "monogram": "AC",
+      "usage": "",
+      "published": true
+    },
+    {
+      "name": "ArahWeave",
+      "level": "Familiar",
+      "logo": "",
+      "monogram": "AW",
+      "usage": "",
+      "published": true
+    },
+    {
+      "name": "GitHub",
+      "level": "Familiar",
+      "logo": "assets/skill-logos/github.svg",
+      "monogram": "GH",
+      "usage": "",
+      "published": true
+    },
+    {
+      "name": "Video editing",
+      "level": "Hands-on",
+      "logo": "",
+      "monogram": "VE",
+      "usage": "",
+      "published": true
+    },
+    {
+      "name": "AI tools",
+      "level": "Hands-on",
+      "logo": "",
+      "monogram": "AI",
+      "usage": "",
+      "published": true
+    }
+  ],
+  "languages_heading": "Languages",
+  "icon_credits_label": "Icon credits",
+  "languages": [
+    {
+      "name": "Bengali",
+      "native_script": "বাংলা",
+      "native_tag": "bn",
+      "level": "Native",
+      "published": true
+    },
+    {
+      "name": "English",
+      "native_script": "",
+      "native_tag": "",
+      "level": "Professional working",
+      "published": true
+    }
+  ]
+}

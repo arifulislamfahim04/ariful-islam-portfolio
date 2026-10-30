@@ -1,15 +1,15 @@
 {
-  "title": "The details that matter",
-  "image": "assets/wool-weave.jpg",
-  "alt": "A closer look at woven yarn. A sample textile study.",
-  "caption": "A closer look at woven yarn. A sample textile study.",
-  "category": "Textiles",
-  "shape": "Square",
-  "body": "<p>This sample demonstrates the photo story layout. Replace it with your own photo, caption, and memory in Pages CMS.</p>",
-  "credit": "Mick Haupt / Unsplash",
-  "source_url": "https://unsplash.com/photos/a-close-up-of-a-piece-of-yarn-LZrx0NWxvQY",
+  "title": "A practical workspace",
+  "image": "assets/placeholders/pixabay-desk.webp",
+  "alt": "An open laptop on a wooden desk. Stock placeholder, not a personal photograph.",
+  "caption": "Placeholder photograph — replace this with your own moment.",
+  "category": "Making",
+  "shape": "Landscape",
+  "body": "<p>This stock photograph demonstrates the gallery layout. It is not a record of my university life or work. Replace it in Pages CMS.</p>",
+  "credit": "StartupStockPhotos",
+  "source_url": "https://pixabay.com/photos/laptop-notebook-startup-computer-849800/",
   "featured": true,
   "placeholder": true,
   "published": true,
-  "order": 3
+  "order": 4
 }

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://arifulislamfahim04.github.io/ariful-islam-portfolio/sitemap.xml

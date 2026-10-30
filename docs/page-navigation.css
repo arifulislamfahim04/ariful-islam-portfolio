@@ -1,0 +1,73 @@
+@view-transition{navigation:auto}
+/* Page content, header and dock retain their positions underneath a single cover. */
+.page-content,.site-header,.site-footer,.shared-footer,.hero-rail,.dock-rail{view-transition-name:none}
+#page-signature{position:fixed;inset:0;z-index:10000;visibility:hidden;pointer-events:none;isolation:isolate}
+.signature-panel{position:absolute;inset:0;background:#78cc6d}
+.signature-wordmark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:600 clamp(18px,min(10vw,calc(130vw / var(--signature-length,7))),100px)/1.1 FooterPoppins,Poppins,var(--sans,sans-serif);letter-spacing:-.065em;color:#18251e}
+.signature-letter{display:inline-block;padding-block:8px;white-space:pre}
+[data-theme=dark] .signature-panel{background:var(--surface,#19211b)}
+[data-theme=dark] .signature-wordmark{color:#78cc6d}
+html.nav-signature #page-signature{visibility:visible}
+html.nav-signature .signature-panel{view-transition-name:signature-panel}
+html.nav-signature::view-transition-group(*){animation:none}
+html.nav-signature::view-transition-old(*),html.nav-signature::view-transition-new(*){animation:none;mix-blend-mode:normal}
+html.nav-signature::view-transition-old(root){z-index:0}
+html.nav-signature::view-transition-new(root){z-index:1;animation:signature-page-in 600ms linear both}
+html.nav-signature::view-transition-group(signature-panel){z-index:2;animation:signature-cover 600ms cubic-bezier(.65,0,.35,1) both}
+html.nav-signature::view-transition-old(signature-panel){opacity:0}
+html.nav-signature::view-transition-new(signature-panel){opacity:1}
+@keyframes signature-cover{0%{transform:translateY(100%)}30%,66%{transform:translateY(0)}100%{transform:translateY(-100%)}}
+@keyframes signature-page-in{0%,34%{opacity:0}35%,100%{opacity:1}}
+html.nav-signature-repeat::view-transition-new(root){animation-duration:360ms}
+html.nav-signature-repeat::view-transition-group(signature-panel){animation-duration:360ms}
+@keyframes signature-repeat-letter{0%,30%{opacity:0}44%,65%{opacity:1}90%,100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){@view-transition{navigation:none}#page-signature{display:none!important}}
+
+html.nav-signature .signature-letter-0{view-transition-name:signature-letter-0}
+html.nav-signature::view-transition-group(signature-letter-0){z-index:3}
+html.nav-signature::view-transition-old(signature-letter-0){opacity:0}
+html.nav-signature::view-transition-new(signature-letter-0){animation:signature-letter-0 600ms cubic-bezier(.22,1,.36,1) both}
+html.nav-signature-repeat::view-transition-new(signature-letter-0){animation:signature-repeat-letter 360ms ease-out both}
+@keyframes signature-letter-0{0%,26.00%{opacity:0;transform:translateY(14px)}36.00%{opacity:1;transform:translateY(0)}66%{opacity:1;transform:translateY(0)}88%,100%{opacity:0;transform:translateY(-8px)}}
+
+html.nav-signature .signature-letter-1{view-transition-name:signature-letter-1}
+html.nav-signature::view-transition-group(signature-letter-1){z-index:3}
+html.nav-signature::view-transition-old(signature-letter-1){opacity:0}
+html.nav-signature::view-transition-new(signature-letter-1){animation:signature-letter-1 600ms cubic-bezier(.22,1,.36,1) both}
+html.nav-signature-repeat::view-transition-new(signature-letter-1){animation:signature-repeat-letter 360ms ease-out both}
+@keyframes signature-letter-1{0%,30.00%{opacity:0;transform:translateY(14px)}40.00%{opacity:1;transform:translateY(0)}66%{opacity:1;transform:translateY(0)}88%,100%{opacity:0;transform:translateY(-8px)}}
+
+html.nav-signature .signature-letter-2{view-transition-name:signature-letter-2}
+html.nav-signature::view-transition-group(signature-letter-2){z-index:3}
+html.nav-signature::view-transition-old(signature-letter-2){opacity:0}
+html.nav-signature::view-transition-new(signature-letter-2){animation:signature-letter-2 600ms cubic-bezier(.22,1,.36,1) both}
+html.nav-signature-repeat::view-transition-new(signature-letter-2){animation:signature-repeat-letter 360ms ease-out both}
+@keyframes signature-letter-2{0%,34.00%{opacity:0;transform:translateY(14px)}44.00%{opacity:1;transform:translateY(0)}66%{opacity:1;transform:translateY(0)}88%,100%{opacity:0;transform:translateY(-8px)}}
+
+html.nav-signature .signature-letter-3{view-transition-name:signature-letter-3}
+html.nav-signature::view-transition-group(signature-letter-3){z-index:3}
+html.nav-signature::view-transition-old(signature-letter-3){opacity:0}
+html.nav-signature::view-transition-new(signature-letter-3){animation:signature-letter-3 600ms cubic-bezier(.22,1,.36,1) both}
+html.nav-signature-repeat::view-transition-new(signature-letter-3){animation:signature-repeat-letter 360ms ease-out both}
+@keyframes signature-letter-3{0%,38.00%{opacity:0;transform:translateY(14px)}48.00%{opacity:1;transform:translateY(0)}66%{opacity:1;transform:translateY(0)}88%,100%{opacity:0;transform:translateY(-8px)}}
+
+html.nav-signature .signature-letter-4{view-transition-name:signature-letter-4}
+html.nav-signature::view-transition-group(signature-letter-4){z-index:3}
+html.nav-signature::view-transition-old(signature-letter-4){opacity:0}
+html.nav-signature::view-transition-new(signature-letter-4){animation:signature-letter-4 600ms cubic-bezier(.22,1,.36,1) both}
+html.nav-signature-repeat::view-transition-new(signature-letter-4){animation:signature-repeat-letter 360ms ease-out both}
+@keyframes signature-letter-4{0%,42.00%{opacity:0;transform:translateY(14px)}52.00%{opacity:1;transform:translateY(0)}66%{opacity:1;transform:translateY(0)}88%,100%{opacity:0;transform:translateY(-8px)}}
+
+html.nav-signature .signature-letter-5{view-transition-name:signature-letter-5}
+html.nav-signature::view-transition-group(signature-letter-5){z-index:3}
+html.nav-signature::view-transition-old(signature-letter-5){opacity:0}
+html.nav-signature::view-transition-new(signature-letter-5){animation:signature-letter-5 600ms cubic-bezier(.22,1,.36,1) both}
+html.nav-signature-repeat::view-transition-new(signature-letter-5){animation:signature-repeat-letter 360ms ease-out both}
+@keyframes signature-letter-5{0%,46.00%{opacity:0;transform:translateY(14px)}56.00%{opacity:1;transform:translateY(0)}66%{opacity:1;transform:translateY(0)}88%,100%{opacity:0;transform:translateY(-8px)}}
+
+html.nav-signature .signature-letter-6{view-transition-name:signature-letter-6}
+html.nav-signature::view-transition-group(signature-letter-6){z-index:3}
+html.nav-signature::view-transition-old(signature-letter-6){opacity:0}
+html.nav-signature::view-transition-new(signature-letter-6){animation:signature-letter-6 600ms cubic-bezier(.22,1,.36,1) both}
+html.nav-signature-repeat::view-transition-new(signature-letter-6){animation:signature-repeat-letter 360ms ease-out both}
+@keyframes signature-letter-6{0%,50.00%{opacity:0;transform:translateY(14px)}60.00%{opacity:1;transform:translateY(-3px)}66%{opacity:1;transform:translateY(0)}88%,100%{opacity:0;transform:translateY(-8px)}}

@@ -1,9 +1,13 @@
 {
   "title": "Dean’s Award",
-  "date": "2025 · DEAN",
-  "institution": "",
+  "date": "2025",
+  "institution": "Green University of Bangladesh",
   "body": "<p>Academic recognition from Green University of Bangladesh.</p>",
   "file": "",
   "published": true,
-  "order": 5
+  "order": 5,
+  "website": "https://www.green.edu.bd/",
+  "year": "2025",
+  "semester": "",
+  "featured": false
 }
